@@ -10,7 +10,7 @@ public class PlannerApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/controllers/AddUser.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/controllers/MainPage.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Desktop Planner App");
         primaryStage.show();

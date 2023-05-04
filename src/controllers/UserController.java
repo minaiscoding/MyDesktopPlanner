@@ -45,6 +45,12 @@ public class UserController {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void initialize() {
+        // Initialize the username and password fields
+        usernameField.setText("");
+        passwordField.setText("");
+    }
 
     private boolean userExists(String username) {
         try {
