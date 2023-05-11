@@ -1,5 +1,10 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class User {
@@ -8,11 +13,13 @@ public class User {
     private boolean loggedIn;
     private ArrayList<Task> tasks;
     private Planner planner;
-    public User(){
-	this.username = "";
-    this.password = "";
-    this.loggedIn = false;
-}
+
+    public User() {
+        this.username = "";
+        this.password = "";
+        this.loggedIn = false;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -44,17 +51,49 @@ public class User {
     public void setPlanner(Planner planner) {
         this.planner = planner;
     }
+
     public boolean isValidUser(String username, String password) {
         // check if user exists in database
-    return false;    // return true if user exists and password matches, false otherwise
+        File file = new File("users.txt");
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts[0].equals(username) && parts[1].equals(password)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;    // return true if user exists and password matches, false otherwise
     }
-
 
     public boolean registerUser(String username, String password) {
+        // check if user already exists in database
+        File file = new File("users.txt");
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts[0].equals(username)) {
+                    return false; // user already exists
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         // add new user to database
-        // return true if registration successful, false otherwise
-    	return false;
+        try (FileWriter writer = new FileWriter(file, true)) {
+            writer.write(username + "," + password + "\n");
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
+
 
     public boolean isLoggedIn() {
         return loggedIn;
@@ -63,5 +102,4 @@ public class User {
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
     }
-
 }
