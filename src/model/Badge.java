@@ -1,6 +1,8 @@
 package model;
 
-public enum Badge {
+import java.io.Serializable;
+
+public enum Badge implements Serializable{
 	//page 2
 
 }

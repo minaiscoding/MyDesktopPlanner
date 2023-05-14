@@ -1,7 +1,9 @@
 package view;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -10,64 +12,71 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class SignUpView extends VBox {
-private Label titleLabel;
-private Label usernameLabel;
-private TextField usernameField;
-private Label passwordLabel;
-private PasswordField passwordField;
-private Button signUpButton;
-public SignUpView() {
-    titleLabel = new Label("Sign Up");
-    titleLabel.setStyle("-fx-font-size: 24; -fx-font-weight: bold;");
+    private Label titleLabel;
+    private Label usernameLabel;
+    private TextField usernameField;
+    private Label passwordLabel;
+    private PasswordField passwordField;
+    private Button signUpButton;
 
-    usernameLabel = new Label("Username:");
-    usernameField = new TextField();
+    public SignUpView() {
+        titleLabel = new Label("Sign Up");
+        titleLabel.setStyle("-fx-font-size: 24; -fx-font-weight: bold;");
 
-    passwordLabel = new Label("Password:");
-    passwordField = new PasswordField();
+        usernameLabel = new Label("Username:");
+        usernameField = new TextField();
 
-    signUpButton = new Button("Sign Up");
+        passwordLabel = new Label("Password:");
+        passwordField = new PasswordField();
 
-    VBox vBox = new VBox();
-    vBox.getChildren().addAll(titleLabel, usernameLabel, usernameField, passwordLabel, passwordField, signUpButton);
-    vBox.setSpacing(10);
-    vBox.setPadding(new Insets(10));
+        signUpButton = new Button("Sign Up");
 
-    this.getChildren().add(vBox);
-}
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(titleLabel, usernameLabel, usernameField, passwordLabel, passwordField, signUpButton);
+        vBox.setSpacing(10);
+        vBox.setPadding(new Insets(10));
 
-public String getUsername() {
-    return usernameField.getText();
-}
+        this.getChildren().add(vBox);
 
-public String getPassword() {
-    return passwordField.getText();
-}
+        // Set the preferred width and height of the SignUpView to the screen's dimensions
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        this.setPrefWidth(primaryScreenBounds.getWidth());
+        this.setPrefHeight(primaryScreenBounds.getHeight());
+    }
 
-public void clearFields() {
-    usernameField.clear();
-    passwordField.clear();
-}
+    public String getUsername() {
+        return usernameField.getText();
+    }
 
-public void addSignUpListener(EventHandler<ActionEvent> listener) {
-    signUpButton.setOnAction(listener);
-}
+    public String getPassword() {
+        return passwordField.getText();
+    }
 
-public void showErrorMessage() {
-    Alert alert = new Alert(AlertType.ERROR);
-    alert.setTitle("Error");
-    alert.setHeaderText("Username already exists");
-    alert.setContentText("Please choose a different username");
-    alert.showAndWait();
-}
+    public void clearFields() {
+        usernameField.clear();
+        passwordField.clear();
+    }
 
-public void showSuccessMessage() {
-    Alert alert = new Alert(AlertType.INFORMATION);
-    alert.setTitle("Success");
-    alert.setHeaderText("You have successfully signed up");
-    alert.showAndWait();
-}
+    public void addSignUpListener(EventHandler<ActionEvent> listener) {
+        signUpButton.setOnAction(listener);
+    }
+
+    public void showErrorMessage() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Username already exists");
+        alert.setContentText("Please choose a different username");
+        alert.showAndWait();
+    }
+
+    public void showSuccessMessage() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("You have successfully signed up");
+        alert.showAndWait();
+    }
 }

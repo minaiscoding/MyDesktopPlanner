@@ -1,8 +1,13 @@
 package model;
+import java.io.Serializable;
 import java.time.*;
 import java.util.*;
 
-public class Planner {
+public class Planner implements Serializable{
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -9152579661762683399L;
 	private Calendar calendar;
     private int minTaskPerDay;
     private int minTimeSlotMinute;

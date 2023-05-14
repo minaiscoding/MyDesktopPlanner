@@ -1,8 +1,13 @@
 package model;
+import java.io.Serializable;
 import java.util.*;
 
-public class Category {
-    private String type;
+public class Category implements Serializable{
+    /**
+	 *
+	 */
+	private static final long serialVersionUID = -5901258001893370970L;
+	private String type;
     private String color;
     private ArrayList<Task> taches;
 

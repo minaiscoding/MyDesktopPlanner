@@ -5,10 +5,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User {
-    private String username;
+public class User implements Serializable{
+    /**
+	 *
+	 */
+	private static final long serialVersionUID = 8312128879020914324L;
+	private String username;
     private String password;
     private boolean loggedIn;
     private ArrayList<Task> tasks;

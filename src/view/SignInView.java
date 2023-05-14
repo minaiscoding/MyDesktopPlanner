@@ -1,7 +1,9 @@
 package view;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -10,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class SignInView extends VBox {
@@ -32,10 +35,24 @@ public class SignInView extends VBox {
 
         signInButton = new Button("Sign In");
 
+        // Create a label and button for signing up
+        Label signUpLabel = new Label("Don't have an account?");
+        Button signUpButton = new Button("Sign Up");
+
+        // Add an event handler for the sign up button to show the SignUpView
+        signUpButton.setOnAction(event -> {
+            Stage stage = (Stage) this.getScene().getWindow();
+            stage.setScene(new Scene(new SignUpView(), 400, 400));
+        });
+
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(titleLabel, usernameLabel, usernameField, passwordLabel, passwordField, signInButton);
+        vBox.getChildren().addAll(titleLabel, usernameLabel, usernameField, passwordLabel, passwordField, signInButton, signUpLabel, signUpButton);
         vBox.setSpacing(10);
         vBox.setPadding(new Insets(10));
+
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        this.setPrefWidth(primaryScreenBounds.getWidth());
+        this.setPrefHeight(primaryScreenBounds.getHeight());
 
         this.getChildren().add(vBox);
     }
@@ -72,4 +89,3 @@ public class SignInView extends VBox {
         alert.showAndWait();
     }
 }
-

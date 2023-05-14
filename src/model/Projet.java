@@ -1,8 +1,13 @@
 package model;
+import java.io.Serializable;
 import java.util.*;
 
-public class Projet {
-    private String nom;
+public class Projet implements Serializable{
+    /**
+	 *
+	 */
+	private static final long serialVersionUID = 8613010725643629898L;
+	private String nom;
     private String description;
     private ArrayList<Task> taches;
 

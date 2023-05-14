@@ -1,7 +1,12 @@
 package model;
+import java.io.Serializable;
 import java.time.*;
 
-public class TimeSlot {
+public class TimeSlot implements Serializable{
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 8539494544992388816L;
 	//static int dureeminInMinute;
     private LocalTime startTime;
     private LocalTime endTime;

@@ -1,37 +1,31 @@
 package model;
+
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import view.*;
-import controller.*;
+
+import java.util.ArrayList;
 
 public class MyDesktopPlanner extends Application {
-private User userModel;
-private SignInView signInView;
-private SignUpView signUpView;
-private UserController userController;
-@Override
-public void start(Stage primaryStage) {
-    userModel = new User();
-    signInView = new SignInView();
-    signUpView = new SignUpView();
-    userController = new UserController(userModel, signInView, signUpView);
+    private User userModel;
 
-    VBox vBox = new VBox();
-    vBox.getChildren().addAll(signInView, signUpView);
-    vBox.setSpacing(10);
-    vBox.setPadding(new Insets(10));
+    @Override
+    public void start(Stage primaryStage) {
+        // Create a User object with some tasks
+        User user = new User();
+        user.setUsername("Amina");
+        ArrayList<Task> tasks = new ArrayList<>();
+        tasks.add(new Task("Make dinner", 60, PrioTask.MEDIUM, null, false, Status.TODO, "Category 1"));
+        tasks.add(new Task("Task 2", 120, PrioTask.HIGH, null, false, Status.TODO, "Category 2"));
+        tasks.add(new Task("Task 3", 30, PrioTask.LOW, null, false, Status.TODO, "Category 3"));
+        user.setTasks(tasks);
 
-    Scene scene = new Scene(vBox, 300, 250);
+        // Create the TaskView and show it
+        TaskView taskView = new TaskView(user);
+        taskView.show(primaryStage);
+    }
 
-    primaryStage.setTitle("My Desktop Planner");
-    primaryStage.setScene(scene);
-    primaryStage.show();
-}
-
-public static void main(String[] args) {
-    launch(args);
-}
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
