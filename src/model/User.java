@@ -42,6 +42,7 @@ public class User {
 
     public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
+        ///////
     }
 
     public Planner getPlanner() {
