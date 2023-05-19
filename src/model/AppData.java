@@ -17,7 +17,11 @@ public class AppData implements Serializable {
         this.isUserSignedIn = isUserSignedIn;
     }
 
-    public ArrayList<User> getUsers() {
+    public AppData() {
+		this.users = new ArrayList<User>();
+	}
+
+	public ArrayList<User> getUsers() {
         return users;
     }
 

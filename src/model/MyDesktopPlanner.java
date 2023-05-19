@@ -3,10 +3,11 @@ package model;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import view.*;
+import controller.*;
 
 import java.util.ArrayList;
 
-public class MyDesktopPlanner extends Application {
+/*public class MyDesktopPlanner extends Application {
     private User userModel;
 
     @Override
@@ -21,11 +22,32 @@ public class MyDesktopPlanner extends Application {
         user.setTasks(tasks);
 
         // Create the TaskView and show it
-        TaskView taskView = new TaskView(user);
+        /*TaskView taskView = new TaskView(user);
         taskView.show(primaryStage);
+        WelcomePageView welcome = new WelcomePageView();
+        welcome.show(primaryStage);
     }
 
     public static void main(String[] args) {
         launch(args);
     }
+}*/
+//Main class
+public class MyDesktopPlanner extends Application {
+
+ public static void main(String[] args) {
+     launch(args);
+ }
+
+ @Override
+ public void start(Stage primaryStage) {
+     AppData appData = new AppData();
+     WelcomePageView welcomePage = new WelcomePageView();
+     WelcomeController welcomeController = new WelcomeController(appData);
+
+     welcomePage.setController(welcomeController);
+     welcomePage.show(primaryStage);
+ }
 }
+
+

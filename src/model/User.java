@@ -14,16 +14,14 @@ public class User implements Serializable{
 	 */
 	private static final long serialVersionUID = 8312128879020914324L;
 	private String username;
-    private String password;
-    private boolean loggedIn;
     private ArrayList<Task> tasks;
     private Planner planner;
 
     public User() {
         this.username = "";
-        this.password = "";
-        this.loggedIn = false;
     }
+    public User(String name)
+    {this.username = name;}
 
     public String getUsername() {
         return username;
@@ -33,13 +31,6 @@ public class User implements Serializable{
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public ArrayList<Task> getTasks() {
         return tasks;
@@ -97,14 +88,5 @@ public class User implements Serializable{
             e.printStackTrace();
         }
         return false;
-    }
-
-
-    public boolean isLoggedIn() {
-        return loggedIn;
-    }
-
-    public void setLoggedIn(boolean loggedIn) {
-        this.loggedIn = loggedIn;
     }
 }
