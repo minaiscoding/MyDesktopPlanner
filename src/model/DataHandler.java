@@ -17,6 +17,10 @@ public class DataHandler {
         AppData data = null;
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(FILENAME))) {
             data = (AppData) in.readObject();
+        } catch (FileNotFoundException e) {
+            // File doesn't exist, create a new one
+            data = new AppData();
+            save(data);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

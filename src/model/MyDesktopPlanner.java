@@ -6,6 +6,7 @@ import view.*;
 import controller.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /*public class MyDesktopPlanner extends Application {
     private User userModel;
@@ -42,11 +43,32 @@ public class MyDesktopPlanner extends Application {
  @Override
  public void start(Stage primaryStage) {
      AppData appData = new AppData();
-     WelcomePageView welcomePage = new WelcomePageView();
-     WelcomeController welcomeController = new WelcomeController(appData);
+     appData = DataHandler.load();
+     if(appData.isUserSignedIn()){
+    	ArrayList<Task> tasksl = new ArrayList<Task>();
+    	 Task task1 = new Task("Task 1", 60, PrioTask.HIGH, new Date(), false, Status.IN_PROGRESS, "Category 1");
+         tasksl.add(task1);
+         
+         Task task2 = new Task("Task 2", 120, PrioTask.LOW, new Date(), true, Status.TODO, "Category 2");
+         tasksl.add(task2);
+         
+         Task task3 = new Task("Task 3", 90, PrioTask.MEDIUM, new Date(), false, Status.DONE, "Category 1");
+         tasksl.add(task3);
+         appData.getCurrentUser().setTasks(tasksl);
+    	 TasksController Tcontroller = new TasksController(appData);
+    	 TaskView tasks = new TaskView(Tcontroller);
+    	 tasks.show(primaryStage);
+     }
+     else{
+    	 WelcomePageView welcomePage = new WelcomePageView();
+         WelcomeController welcomeController = new WelcomeController(appData);
+         welcomePage.setController(welcomeController);
+         welcomePage.show(primaryStage);
 
-     welcomePage.setController(welcomeController);
-     welcomePage.show(primaryStage);
+     }
+
+
+
  }
 }
 

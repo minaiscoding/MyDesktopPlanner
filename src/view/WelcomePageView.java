@@ -16,6 +16,7 @@ import model.*;
 import controller.*;
 
 public class WelcomePageView {
+    boolean FirstTime;
 private WelcomeController controller;
 public void setController(WelcomeController welcomeController) {
 	this.controller = welcomeController;
@@ -24,6 +25,7 @@ public void setController(WelcomeController welcomeController) {
 
 
     public void show(Stage primaryStage) {
+
         // Create welcome message
         Text welcomeText = new Text("Welcome to your planner!\n");
         Text nameText = new Text("Please enter your name so we can start planning...");
@@ -42,6 +44,7 @@ public void setController(WelcomeController welcomeController) {
         nameField.setFont(Font.font("Livvic", 16));
         nameField.setStyle("-fx-font-size: 12px; -fx-pref-width: 50px; -fx-pref-height: 50px; -fx-padding: 2px;");
      // Create a "Next" button
+
         Button nextButton = new Button("Next");
         nextButton.setPrefWidth(201);
         nextButton.setPrefHeight(47);
@@ -50,9 +53,15 @@ public void setController(WelcomeController welcomeController) {
         nextButton.setStyle("-fx-background-color: #82a156; -fx-background-radius: 30px; -fx-text-fill: white; -fx-font-weight: bold;");
         nextButton.setOnAction(event -> {
             String name = nameField.getText();
-            controller.verifyUser(name);
+           FirstTime = controller.verifyUser(name);
             nameField.clear(); // Clear the text field
+            if(FirstTime){
+            	FirstTimeController Fcontroller = new FirstTimeController(controller.getAppData());
+            	FirstTimeView first = new FirstTimeView(Fcontroller);
+            first.show(primaryStage);}
+
         });
+
 
 
 
@@ -73,10 +82,10 @@ public void setController(WelcomeController welcomeController) {
 
         // Create a pane to hold the background image and the layout
         Pane backgroundPane = new Pane();
-        backgroundPane.setPrefSize(643, Screen.getPrimary().getBounds().getHeight());
+        backgroundPane.setPrefSize(Screen.getPrimary().getBounds().getWidth(), Screen.getPrimary().getBounds().getHeight());
 
         // Load the image from file
-        Image backgroundImage = new Image("file:C:\\Users\\amina\\workspace\\MyDesktopPlanner\\planner.jpg");
+        Image backgroundImage = new Image("file:planner.jpg");
 
         // Apply the background image to the pane
         BackgroundImage backgroundImg = new BackgroundImage(backgroundImage,
@@ -102,7 +111,6 @@ public void setController(WelcomeController welcomeController) {
 
         primaryStage.show();
     }
-
 
 
 }

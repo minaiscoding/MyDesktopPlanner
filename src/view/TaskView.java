@@ -1,61 +1,66 @@
 package view;
 
+import controller.TasksController;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import model.*;
+import model.Task;
 
 import java.util.ArrayList;
 
 public class TaskView {
-    private User user;
+    private TasksController controller;
     private BorderPane root;
 
-    public TaskView(User user) {
-        this.user = user;
+    public TaskView(TasksController controller) {
+        this.controller = controller;
         root = new BorderPane();
     }
 
     public void show(Stage stage) {
-        ArrayList<Task> taskList = user.getTasks();
-        System.out.print(taskList.size() );
+        ArrayList<Task> taskList = controller.getAppData().getCurrentUser().getTasks();
 
         // Create the navigation bar
-        VBox navBar = new VBox();
-        navBar.setPadding(new Insets(10));
-        navBar.setSpacing(10);
-        Button homeButton = new Button("Home");
-        Button tasksButton = new Button("Tasks");
-        Button settingsButton = new Button("Settings");
-        navBar.getChildren().addAll(homeButton, tasksButton, settingsButton);
+        NavBar navBar = new NavBar(stage, controller.getAppData());
 
-        // Create the table and set the columns
-        TableView<Task> table = new TableView<>();
-        TableColumn<Task, String> nameCol = new TableColumn<>("Task");
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        TableColumn<Task, PrioTask> priorityCol = new TableColumn<>("Priority");
-        priorityCol.setCellValueFactory(new PropertyValueFactory<>("priority"));
-        TableColumn<Task, Status> statusCol = new TableColumn<>("Status");
-        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
-        table.getColumns().addAll(nameCol, priorityCol, statusCol);
-        table.getItems().addAll(taskList);
+        // Create the custom table view
+        CustomTableView tableView = new CustomTableView(taskList);
 
         // Create the title label
-        Label titleLabel = new Label(user.getUsername() + "'s Tasks");
-        titleLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+        Label titleLabel = new Label(controller.getAppData().getCurrentUser().getUsername() + "'s Tasks");
 
-        // Add the components to the root BorderPane
+        titleLabel.setFont(Font.loadFont("file:Lobster-Regular.ttf", 50));
+        titleLabel.setStyle("-fx-background-color: transparent; -fx-text-fill: #577133;");
+
+        titleLabel.setPadding(new Insets(20));
+
+        // Set the background color of the root pane
+        root.setBackground(new Background(new BackgroundFill(Color.web("#CADFAD"), null, null)));
+
+        // Create a VBox to hold the title label and table view
+        VBox vbox = new VBox();
+        vbox.setPadding(new Insets(40));
+        vbox.getChildren().addAll(titleLabel, tableView);
+      
+
+        // Set the VBox as the center of the BorderPane
+        root.setCenter(vbox);
+
+        // Add the navigation bar to the left of the BorderPane
         root.setLeft(navBar);
-        root.setCenter(table);
-        root.setTop(titleLabel);
 
         // Create a Scene and show it on the specified Stage
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 }
