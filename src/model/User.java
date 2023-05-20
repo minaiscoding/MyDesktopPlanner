@@ -14,8 +14,8 @@ public class User implements Serializable{
 	 */
 	private static final long serialVersionUID = 8312128879020914324L;
 	private String username;
-    private ArrayList<Task> tasks;
-    private Planner planner;
+    private ArrayList<Task> tasks = new ArrayList<Task>();
+    private Planner planner = new Planner();
 
     public User() {
         this.username = "";

@@ -1,6 +1,8 @@
 package view;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -8,6 +10,7 @@ import model.PrioTask;
 import model.Status;
 import model.Task;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,8 +21,8 @@ public class CustomTableView extends TableView<Task> {
         TableColumn<Task, String> nameCol = new TableColumn<>("Task");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
 
-        TableColumn<Task, Integer> durationCol = new TableColumn<>("Duration (Minutes)");
-        durationCol.setCellValueFactory(new PropertyValueFactory<>("durationInMinutes"));
+        TableColumn<Task, Duration> durationCol = new TableColumn<>("Duration");
+        durationCol.setCellValueFactory(new PropertyValueFactory<>("duration"));
 
         TableColumn<Task, PrioTask> priorityCol = new TableColumn<>("Priority");
         priorityCol.setCellValueFactory(new PropertyValueFactory<>("priority"));
@@ -37,6 +40,7 @@ public class CustomTableView extends TableView<Task> {
         categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
 
         getColumns().addAll(nameCol, durationCol, priorityCol, deadlineCol, unscheduledCol, statusCol, categoryCol);
+        getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         if (taskList == null) {
             setItems(FXCollections.observableArrayList(new ArrayList<>()));

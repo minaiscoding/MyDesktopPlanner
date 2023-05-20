@@ -1,23 +1,25 @@
 package model;
-import java.io.Serializable;
-import java.util.*;
 
-public class Task implements Serializable{
+import java.io.Serializable;
+import java.time.Duration;
+import java.util.Date;
+
+public class Task implements Serializable {
     /**
-	 *
-	 */
-	private static final long serialVersionUID = 3624447590538536960L;
-	private String nom;
-    private int durationInMinutes;
+     *
+     */
+    private static final long serialVersionUID = 3624447590538536960L;
+    private String nom;
+    private Duration duration;
     private PrioTask priority;
     private Date deadline;
     private boolean unscheduled;
     private Status status;
     private String category;
 
-    public Task(String nom, int durationInMinutes, PrioTask priority, Date deadline, boolean unscheduled, Status status, String category) {
+    public Task(String nom, Duration duration, PrioTask priority, Date deadline, boolean unscheduled, Status status, String category) {
         this.nom = nom;
-        this.durationInMinutes = durationInMinutes;
+        this.duration = duration;
         this.priority = priority;
         this.deadline = deadline;
         this.unscheduled = unscheduled;
@@ -33,12 +35,12 @@ public class Task implements Serializable{
         this.nom = nom;
     }
 
-    public int getDurationInMinutes() {
-        return durationInMinutes;
+    public Duration getDuration() {
+        return duration;
     }
 
-    public void setDurationInMinutes(int durationInMinutes) {
-        this.durationInMinutes = durationInMinutes;
+    public void setDuration(Duration duration) {
+        this.duration = duration;
     }
 
     public PrioTask getPriority() {
