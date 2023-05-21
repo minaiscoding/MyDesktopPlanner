@@ -1,6 +1,11 @@
-package model;
+package TP.model;
 
 public enum Status {
-	//page 2 tp
+	notRealised,
+	completed,
+	in_progress,
+	cancelled,
+	delayed
+	
 
 }

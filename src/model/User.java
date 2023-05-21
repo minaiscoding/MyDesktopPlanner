@@ -1,26 +1,48 @@
-package model;
+package TP.model;
 
 import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.TreeSet;
+
+
+
 
 public class User {
+	
+	//les attributs: 
     private String username;
     private String password;
     private boolean loggedIn;
-    private ArrayList<Task> tasks;
+    private TreeSet<Task> tasks;
     private Planner planner;
+    
+    
+    //les methodes: 
+    
+   //constructors: 
 
     public User() {
         this.username = "";
         this.password = "";
         this.loggedIn = false;
+        tasks= new TreeSet<Task>();
     }
+    
+    
+  //Getters && Setters: 
 
-    public String getUsername() {
+    public User(Planner planner2) {
+		this.planner=planner2	;
+	}
+
+
+	public String getUsername() {
         return username;
     }
 
@@ -36,13 +58,13 @@ public class User {
         this.password = password;
     }
 
-    public ArrayList<Task> getTasks() {
+    public TreeSet<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(ArrayList<Task> tasks) {
+    public void setTasks(TreeSet<Task>tasks) {
         this.tasks = tasks;
-        ///////
+        
     }
 
     public Planner getPlanner() {
@@ -52,6 +74,26 @@ public class User {
     public void setPlanner(Planner planner) {
         this.planner = planner;
     }
+    
+    
+    /// Affichage: 
+
+	public void afficher_créneau()
+	{
+		planner.afficher_Calendar();
+	}
+	
+	public void afficher_Tasks()
+	{
+		Iterator<Task>  it = tasks.iterator();
+        while (it.hasNext())
+        {
+            it.next().afficher();
+        }
+		
+	}
+    
+    
 
     public boolean isValidUser(String username, String password) {
         // check if user exists in database
@@ -104,3 +146,25 @@ public class User {
         this.loggedIn = loggedIn;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

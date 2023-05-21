@@ -1,18 +1,47 @@
-package model;
-import java.time.*;
+
+package TP.model;
+import java.time.LocalTime;
+
+
 
 public class TimeSlot {
-	//static int dureeminInMinute;
-    private LocalTime startTime;
-    private LocalTime endTime;
-    private Task tache;
-    private boolean isFree;
+	private float duree;
+	private Task task;
+	private LocalTime HeureDebut ; 
+	private LocalTime HeureFin ;
+	private boolean isFree;
     private boolean isBlocked;
-    public TimeSlot ajoutTache(Task tache){
-    	//3 dernier ligne page 1 tp
-    	return null;
-    }
+	
+	public TimeSlot (LocalTime HeureDebut, LocalTime HeureFin)
+	{
+		this.HeureDebut=HeureDebut;
+		this.HeureFin=HeureFin;
+		this.isFree=true;
+		
+		
+	}
+	
+	public  LocalTime getHeureDebut()
+	{
+		return HeureDebut;
+	}
+	public  LocalTime getHeureFin()
+	{
+		return HeureFin;
+	}
+	
+	
+	
+	public void afficher()
+	{
+		System.out.println("[ "+this.HeureDebut+" ; "+this.HeureFin+" ]");
+		if (isFree == true) {
+		System.out.println("Etat: libre");
+	      }
+		else System.out.println("Etat: occupé");
+		System.out.println("______________");
+	}
 
-    // constructor, getters, and setters
+
 }
 

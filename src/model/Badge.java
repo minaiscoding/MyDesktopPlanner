@@ -1,6 +1,9 @@
-package model;
+
+package TP.model;
+
 
 public enum Badge {
-	//page 2
-
+Good,
+VeryGood,
+Excelent
 }
