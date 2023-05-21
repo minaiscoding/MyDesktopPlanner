@@ -31,7 +31,7 @@ public class TasksController {
 	            // Mark each selected task as done
 	            for (Task task : selectedTasks) {
 
-	                task.setStatus(Status.DONE);
+	                task.setStatus(Status.completed);
 	                appData.getCurrentUser().getPlanner().IncTasksDone();
 
 	                DataHandler.save(appData);
@@ -57,7 +57,7 @@ public class TasksController {
 
 		                if (timeSlotDuration.compareTo(taskDuration) >= 0) {
 		                    // Plan the task in the current time slot
-		                    timeSlot.setTache(task);
+		                    timeSlot.setTask(task);
 		                    timeSlot.setFree(false);
 
 		                    // Calculate the remaining duration after planning the task

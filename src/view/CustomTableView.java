@@ -6,13 +6,14 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.PrioTask;
-import model.Status;
 import model.Task;
+import model.Priority;
+import model.Status;
+import model.Category;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class CustomTableView extends TableView<Task> {
 
@@ -24,19 +25,19 @@ public class CustomTableView extends TableView<Task> {
         TableColumn<Task, Duration> durationCol = new TableColumn<>("Duration");
         durationCol.setCellValueFactory(new PropertyValueFactory<>("duration"));
 
-        TableColumn<Task, PrioTask> priorityCol = new TableColumn<>("Priority");
+        TableColumn<Task, Priority> priorityCol = new TableColumn<>("Priority");
         priorityCol.setCellValueFactory(new PropertyValueFactory<>("priority"));
 
-        TableColumn<Task, Date> deadlineCol = new TableColumn<>("Deadline");
+        TableColumn<Task, LocalDate> deadlineCol = new TableColumn<>("Deadline");
         deadlineCol.setCellValueFactory(new PropertyValueFactory<>("deadline"));
 
         TableColumn<Task, Boolean> unscheduledCol = new TableColumn<>("Unscheduled");
-        unscheduledCol.setCellValueFactory(new PropertyValueFactory<>("unscheduled"));
+        unscheduledCol.setCellValueFactory(new PropertyValueFactory<>("is_scheduled"));
 
         TableColumn<Task, Status> statusCol = new TableColumn<>("Status");
         statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        TableColumn<Task, String> categoryCol = new TableColumn<>("Category");
+        TableColumn<Task, Category> categoryCol = new TableColumn<>("Category");
         categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
 
         getColumns().addAll(nameCol, durationCol, priorityCol, deadlineCol, unscheduledCol, statusCol, categoryCol);

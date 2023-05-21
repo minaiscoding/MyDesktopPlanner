@@ -198,21 +198,22 @@ public class Ajout_tache extends Stage {
 
 	         // priority
 	    	  Priority  prio = null;
-	    	  if (this.priorityy.getValue().equals("High")) {prio=Priority.High;}
-	    	  if (this.priorityy.getValue().equals("Low"))  {  prio=Priority.Low; }
-	    	  if (this.priorityy.getValue().equals("Medium")) {prio=Priority.Medium;}
+	    	  if (this.priorityy.getValue().equals("High")) {prio=Priority.HIGH;}
+	    	  if (this.priorityy.getValue().equals("Low"))  {  prio=Priority.LOW; }
+	    	  if (this.priorityy.getValue().equals("Medium")) {prio=Priority.MEDIUM;}
 
 	    	  // decomposable
 	    	  boolean decompsable;
 	    	  if (decomp.getValue().equals("Yes       "))
 	    	  {
-	    		  Task_composed tache= new Task_composed(name, duration,prio,deadline,categorie,false); ;
+	    		  Task_composed tache= new Task_composed(name, Duration.ofMinutes(duration),prio,deadline,false,Status.notRealised,categorie);
+
 	    	    model.getTasks().add(tache);
 
 	    	  }
 	    	  if (decomp.getValue().equals("No         ")) {
 
-	    		  Task_simple tache= new Task_simple(name, duration,prio,deadline,categorie,false);
+	    		  Task_simple tache= new Task_simple(name, Duration.ofMinutes(duration),prio,deadline,false,Status.notRealised,categorie);
 	    		  model.getTasks().add(tache);
 	    	  }
 
@@ -238,7 +239,7 @@ public class Ajout_tache extends Stage {
 	       	    btn3.setFont(Font.font ("Verdana", 15));
 	       	    btn3.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
 	       	    btn3.setOnAction(event -> {
-	       	      this.model.afficher_Tasks();
+	       	      //this.model.afficher_Tasks();
 
 	          	       });
 

@@ -6,7 +6,7 @@ public class TimeSlot implements Serializable {
     private static final long serialVersionUID = 8539494544992388816L;
     private LocalTime startTime;
     private LocalTime endTime;
-    private Task tache;
+    private Task task;
     private boolean isFree;
     private boolean isBlocked;
 
@@ -31,12 +31,12 @@ public class TimeSlot implements Serializable {
         this.endTime = endTime;
     }
 
-    public Task getTache() {
-        return tache;
+    public Task getTask() {
+        return task;
     }
 
-    public void setTache(Task tache) {
-        this.tache = tache;
+    public void setTask(Task task) {
+        this.task = task;
     }
 
     public boolean isFree() {
@@ -59,5 +59,14 @@ public class TimeSlot implements Serializable {
         // Add your implementation here
         return null;
     }
+    public void afficher()
+	{
+		System.out.println("[ "+this.startTime+" ; "+this.endTime+" ]");
+		if (isFree == true) {
+		System.out.println("Etat: libre");
+	      }
+		else System.out.println("Etat: occupé");
+		System.out.println("______________");
+	}
 }
 

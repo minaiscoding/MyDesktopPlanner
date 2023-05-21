@@ -1,6 +1,12 @@
 package model;
 
-public enum Status {
-    TODO, IN_PROGRESS, DONE
-}
 
+public enum Status {
+	notRealised,
+	completed,
+	in_progress,
+	cancelled,
+	delayed
+
+
+}

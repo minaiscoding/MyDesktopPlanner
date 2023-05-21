@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import com.sun.javafx.collections.MappingChange.Map;
 
@@ -31,14 +32,14 @@ public class MyDesktopPlanner extends Application {
      if(appData.isUserSignedIn()){
     	 appData.getCurrentUser().getPlanner().setCalendar(new Calendar());
     	 Calendar calendar = appData.getCurrentUser().getPlanner().getCalendar();
-    	 HashMap<LocalDate, List<TimeSlot>> timeByDay = new HashMap<LocalDate, List<TimeSlot>>();
+    	 TreeMap<LocalDate, ArrayList<TimeSlot>> timeByDay = new TreeMap<LocalDate, ArrayList<TimeSlot>>();
 
          LocalDate startDate = LocalDate.now(); // Start from today
          int numOfDays = 7; // Number of days in the week
 
          for (int i = 0; i < numOfDays; i++) {
              LocalDate date = startDate.plusDays(i);
-             List<TimeSlot> timeSlots = new ArrayList<>();
+             ArrayList<TimeSlot> timeSlots = new ArrayList<>();
 
              // Create five time slots for each day
              LocalTime startTime = LocalTime.of(9, 0); // Start time
@@ -59,7 +60,7 @@ public class MyDesktopPlanner extends Application {
          DataHandler.save(appData);
 
          // Print the calendar to verify the initialization
-         for (Entry<LocalDate, List<TimeSlot>> entry : calendar.getTimeByDay().entrySet()) {
+         for (Entry<LocalDate, ArrayList<TimeSlot>> entry : calendar.getTimeByDay().entrySet()) {
              LocalDate date = entry.getKey();
              List<TimeSlot> timeSlots = entry.getValue();
              System.out.println("Date: " + date);
@@ -71,35 +72,36 @@ public class MyDesktopPlanner extends Application {
          }
 
     	 ArrayList<Task> taskList = new ArrayList<>();
+    	 Category cat1 = new Category();
 
-    	 Task task1 = new Task("Task 1", Duration.ofMinutes(60), PrioTask.HIGH, new Date(), false, Status.IN_PROGRESS, "Category 1");
+    	 Task_simple task1 = new Task_simple("Task 1", Duration.ofMinutes(60), Priority.HIGH, LocalDate.now(), false, Status.notRealised, cat1);
     	 taskList.add(task1);
 
-    	 Task task2 = new Task("Task 2", Duration.ofMinutes(120), PrioTask.LOW, new Date(), true, Status.TODO, "Category 2");
+    	 Task_simple task2 = new Task_simple("Task 2", Duration.ofMinutes(60), Priority.HIGH, LocalDate.now(), false, Status.notRealised, cat1);
     	 taskList.add(task2);
 
-    	 Task task3 = new Task("Task 3", Duration.ofMinutes(90), PrioTask.MEDIUM, new Date(), false, Status.DONE, "Category 1");
+    	 Task_simple task3 = new Task_simple("Task 3", Duration.ofMinutes(60), Priority.HIGH, LocalDate.now(), false, Status.notRealised, cat1);
     	 taskList.add(task3);
 
-    	 Task task4 = new Task("Task 4", Duration.ofMinutes(80), PrioTask.HIGH, new Date(), false, Status.IN_PROGRESS, "Category 2");
+    	 Task_simple task4 = new Task_simple("Task 4", Duration.ofMinutes(60), Priority.HIGH, LocalDate.now(), false, Status.notRealised, cat1);
     	 taskList.add(task4);
 
-    	 Task task5 = new Task("Task 5", Duration.ofMinutes(150), PrioTask.LOW, new Date(), true, Status.TODO, "Category 1");
+    	 Task_simple task5 = new Task_simple("Task 5", Duration.ofMinutes(60), Priority.HIGH, LocalDate.now(), false, Status.notRealised, cat1);
     	 taskList.add(task5);
 
-    	 Task task6 = new Task("Task 6", Duration.ofMinutes(70), PrioTask.MEDIUM, new Date(), false, Status.DONE, "Category 2");
+    	 Task_simple task6 = new Task_simple("Task 6", Duration.ofMinutes(60), Priority.HIGH, LocalDate.now(), false, Status.notRealised, cat1);
     	 taskList.add(task6);
 
-    	 Task task7 = new Task("Task 7", Duration.ofMinutes(100), PrioTask.HIGH, new Date(), false, Status.IN_PROGRESS, "Category 1");
+    	 Task_simple task7 = new Task_simple("Task 7", Duration.ofMinutes(60), Priority.HIGH, LocalDate.now(), false, Status.notRealised, cat1);
     	 taskList.add(task7);
 
-    	 Task task8 = new Task("Task 8", Duration.ofMinutes(110), PrioTask.LOW, new Date(), true, Status.TODO, "Category 2");
+    	 Task_simple task8 = new Task_simple("Task 8", Duration.ofMinutes(60), Priority.HIGH, LocalDate.now(), false, Status.notRealised, cat1);
     	 taskList.add(task8);
 
-    	 Task task9 = new Task("Task 9", Duration.ofMinutes(130), PrioTask.MEDIUM, new Date(), false, Status.DONE, "Category 1");
+    	 Task_simple task9 = new Task_simple("Task 9", Duration.ofMinutes(60), Priority.HIGH, LocalDate.now(), false, Status.notRealised, cat1);
     	 taskList.add(task9);
 
-    	 Task task10 = new Task("Task 10", Duration.ofMinutes(90), PrioTask.HIGH, new Date(), false, Status.IN_PROGRESS, "Category 2");
+    	 Task_simple task10 = new Task_simple("Task 10", Duration.ofMinutes(60), Priority.HIGH, LocalDate.now(), false, Status.notRealised, cat1);
     	 taskList.add(task10);
 
 
