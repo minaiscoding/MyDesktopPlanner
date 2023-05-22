@@ -72,7 +72,7 @@ public class MyDesktopPlanner extends Application {
          }
 
     	 ArrayList<Task> taskList = new ArrayList<>();
-    	 Category cat1 = new Category();
+    	 Category cat1 = new Category("Study");
 
     	 Task_simple task1 = new Task_simple("Task 1", Duration.ofMinutes(60), Priority.HIGH, LocalDate.now(), false, Status.notRealised, cat1);
     	 taskList.add(task1);

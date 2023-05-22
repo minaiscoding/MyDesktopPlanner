@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.Planner;
 import controller.*;
 
 public class FirstTimeView {
@@ -43,6 +44,10 @@ public class FirstTimeView {
 	        nextButton.setLayoutY(622);
 	        nextButton.setStyle("-fx-background-color: #82a156; -fx-background-radius: 30px; -fx-text-fill: white; -fx-font-weight: bold;");
 	        nextButton.setOnAction(event -> {
+
+	        	Add_Planner stage = new Add_Planner(controller.getAppData());
+	     	   //	Ajout_tache stage= new Ajout_tache(Nada);
+	     		stage.show();
 
 	        });
 

@@ -31,8 +31,8 @@ public class Calendar implements Serializable {
 
 
 
-  	public void setTimeByDay(TreeMap<LocalDate, ArrayList<TimeSlot>> créneauParJour) {
-  		timeByDay = créneauParJour;
+  	public void setTimeByDay(TreeMap<LocalDate, ArrayList<TimeSlot>> creneauParJour) {
+  		timeByDay = creneauParJour;
   	}
 
 
