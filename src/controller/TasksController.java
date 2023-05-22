@@ -78,6 +78,7 @@ public class TasksController {
 		                    }
 
 		                    // Exit the method after planning the task
+		                    task.setscheduled(false);
 		                    return;
 		                }
 		            }
