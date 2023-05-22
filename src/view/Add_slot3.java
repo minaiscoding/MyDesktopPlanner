@@ -29,6 +29,7 @@ public class Add_slot3  extends Stage {
 	private Spinner<Integer> minutesSpinnerdebut;
 	private Spinner<Integer> hoursSpinnerfin;
 	private Spinner<Integer> minutesSpinnerfin;
+	private AppData appData;
 	private User model;
 	private LocalDate day;
 	private GridPane grid ;
@@ -36,11 +37,12 @@ public class Add_slot3  extends Stage {
 
 
    // constructor of the Stage
-   public Add_slot3 (User user , LocalDate day ) {
+   public Add_slot3 (AppData appData , LocalDate day ) {
 
 	   this.setTitle("Add Time Slot");
 	   this.setResizable(false);
-	   this.model=user;
+	   this.appData = appData;
+	   this.model=appData.getCurrentUser();
 	   this.day=day;
 
         // Create a GridPane layout
@@ -192,6 +194,7 @@ public  LocalTime getHeureDebut()
                 	    else {
                 	    	 TimeSlot timeSlot= new TimeSlot(HeureDebut,HeureFin );
                        		 model.getPlanner().getCalendar().add_TimeSlot(day, timeSlot);
+                       		DataHandler.save(appData);
 
                          	 this.close();
 

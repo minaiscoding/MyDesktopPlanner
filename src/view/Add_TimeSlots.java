@@ -17,12 +17,14 @@ import javafx.scene.layout.RowConstraints ;
 
 public class Add_TimeSlots extends GridPane{
 
+	private AppData appData;
 	private User model;
 
 
-	public Add_TimeSlots(User model  )
+	public Add_TimeSlots(AppData appdata  )
 	{
-		this.model=model;
+		appData = appdata;
+		this.model=appData.getCurrentUser();
 
 		this.setAlignment(Pos.CENTER);
 		this.setHgap(10);
@@ -55,7 +57,8 @@ public class Add_TimeSlots extends GridPane{
          	    btn1.setFont(Font.font ("Verdana", 15));
          	    btn1.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
          	    btn1.setOnAction(event -> {
-            	      Add_slot1 stage=new Add_slot1(this.model);
+         	    	DataHandler.save(appData);
+            	      Add_slot1 stage=new Add_slot1(appData);
                       stage.show();
 
             	       });
@@ -73,7 +76,8 @@ public class Add_TimeSlots extends GridPane{
           	    btn2.setFont(Font.font ("Verdana", 15));
           	    btn2.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
           	    btn2.setOnAction(event -> {
-             	      Add_Slot0 stage=new Add_Slot0 (this.model);
+          	    	DataHandler.save(appData);
+             	      Add_Slot0 stage=new Add_Slot0 (appData);
                        stage.show();
 
              	       });
@@ -82,12 +86,12 @@ public class Add_TimeSlots extends GridPane{
 
 
 
-          	 Button btn3 = new Button("Afficher");
+          	 Button btn3 = new Button("Save");
        	   	btn3.setPrefSize(120,40);
        	    btn3.setFont(Font.font ("Verdana", 15));
        	    btn3.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
        	    btn3.setOnAction(event -> {
-       	    //  this.model.afficher_créneau();
+       	    	DataHandler.save(appData);
 
           	       });
 

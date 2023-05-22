@@ -27,6 +27,7 @@ public class Add_Planner extends Stage {
 	private DatePicker Debut_periode;
 	private DatePicker Fin_periode;
 	private TextField name;
+	private AppData appData;
 	private User model;
 
    public LocalDate getDebut_periode() {
@@ -43,7 +44,7 @@ public class Add_Planner extends Stage {
 
 // constructor of the Stage
    public Add_Planner(AppData appdata) {
-
+	   this.appData = appdata;
 	   this.setTitle("Ajouter un créneau");
 	   this.setResizable(false);
 	   this.model=appdata.getCurrentUser();
@@ -138,9 +139,11 @@ public class Add_Planner extends Stage {
 	       bouton.setOnAction(event -> {
 	            // Basculer vers l'étape suivant: ajouter les créneaux libres:
 	    	   // les exceptions:
+
 	        	Planner plan= new Planner(this.getName(),this.getDebut_periode(), this.getFin_periode());
 	    		model.setPlanner(plan);
-	            GridPane G= new Add_TimeSlots(model);
+	    		DataHandler.save(appData);
+	            GridPane G= new Add_TimeSlots(appData);
 	            this.setScene(new Scene(G,400,300));
 
 	        });

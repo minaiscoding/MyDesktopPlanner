@@ -20,17 +20,18 @@ import javafx.scene.layout.RowConstraints ;
 
 public class Add_Slot0  extends Stage {
 
-
+	private AppData appData;
 	private User model;
 
 
 
    // constructor of the Stage
-   public Add_Slot0 (User user) {
+   public Add_Slot0 (AppData appData) {
 
 	   this.setTitle("Add Time Slots");
 	   this.setResizable(false);
-	   this.model=user;
+	   this.appData = appData;
+	   this.model=appData.getCurrentUser();
 
 
         // Create a GridPane layout
@@ -73,7 +74,8 @@ public class Add_Slot0  extends Stage {
 	    btn1.setFont(Font.font ("Verdana", 15));
 	    btn1.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
 	    btn1.setOnAction(event -> {
- 	      Add_slot2 stage=new Add_slot2 (model,Days.getValue());
+ 	      Add_slot2 stage=new Add_slot2 (appData,Days.getValue());
+ 	     DataHandler.save(appData);
            stage.show();
 
  	       });
@@ -118,7 +120,8 @@ public class Add_Slot0  extends Stage {
 	    btn2.setFont(Font.font ("Verdana", 15));
 	    btn2.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
 	    btn2.setOnAction(event -> {
- 	      Add_slot3 stage=new Add_slot3 (model,day.getValue());
+	    	DataHandler.save(appData);
+ 	      Add_slot3 stage=new Add_slot3 (appData,day.getValue());
            stage.show();
 
  	       });

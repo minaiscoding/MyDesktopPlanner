@@ -29,17 +29,18 @@ public class Add_slot1  extends Stage {
 	private Spinner<Integer> minutesSpinnerdebut;
 	private Spinner<Integer> hoursSpinnerfin;
 	private Spinner<Integer> minutesSpinnerfin;
+	private AppData appData;
 	private User model;
 	private GridPane grid ;
 
 
 
    // constructor of the Stage
-   public Add_slot1 (User user ) {
-
+   public Add_slot1 (AppData appData ) {
+	   this.appData = appData;
 	   this.setTitle("Add Time Slot");
 	   this.setResizable(false);
-	   this.model=user;
+	   this.model=appData.getCurrentUser();
 
         // Create a GridPane layout
         grid = new GridPane();
@@ -115,6 +116,7 @@ public class Add_slot1  extends Stage {
 
 		 Button btn =creerBouton("Add");
 		 grid.add(btn ,4,8,3, 1);
+		 DataHandler.save(appData);
 
 		 this.setScene(new Scene(grid,300,250));
 

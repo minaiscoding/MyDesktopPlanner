@@ -52,8 +52,8 @@ public class Planner implements Serializable {
         this.name = name;
         this.first_Day = first;
         this.last_Day = last;
-        TreeMap<LocalDate, ArrayList<TimeSlot>> CreneauParJour = new TreeMap<LocalDate, ArrayList<TimeSlot>>();
-        Calendar calen = new Calendar(CreneauParJour);
+        TreeMap<LocalDate, ArrayList<TimeSlot>> TimeSlotsPerDay = new TreeMap<LocalDate, ArrayList<TimeSlot>>();
+        Calendar calen = new Calendar(TimeSlotsPerDay);
         this.calendar = calen;
     }
 
