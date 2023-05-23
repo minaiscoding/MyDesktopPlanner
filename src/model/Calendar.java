@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 public class Calendar implements Serializable {
     private static final long serialVersionUID = -8297802628843331249L;
   //attributs:
-  	private TreeMap<LocalDate, ArrayList<TimeSlot>> timeByDay;
+  	private TreeMap<LocalDate,TreeSet<TimeSlot>> timeByDay;
 
 
 
@@ -17,7 +17,7 @@ public class Calendar implements Serializable {
   	{}
 
 
-  	public Calendar(TreeMap<LocalDate, ArrayList<TimeSlot>> timeByDay)
+  	public Calendar(TreeMap<LocalDate, TreeSet<TimeSlot>> timeByDay)
   	{
   		this.timeByDay=timeByDay;
 
@@ -25,13 +25,13 @@ public class Calendar implements Serializable {
 
 
 
-  	public TreeMap<LocalDate, ArrayList<TimeSlot>> getTimeByDay() {
+  	public TreeMap<LocalDate, TreeSet<TimeSlot>> getTimeByDay() {
   		return timeByDay;
   	}
 
 
 
-  	public void setTimeByDay(TreeMap<LocalDate, ArrayList<TimeSlot>> creneauParJour) {
+  	public void setTimeByDay(TreeMap<LocalDate, TreeSet<TimeSlot>> creneauParJour) {
   		timeByDay = creneauParJour;
   	}
 
@@ -39,10 +39,10 @@ public class Calendar implements Serializable {
 
   	public void add_TimeSlot(LocalDate jour, TimeSlot timeSlot)
   	{
-  		ArrayList<TimeSlot> TimeSlot_list= timeByDay.get(jour);
+  		TreeSet<TimeSlot> TimeSlot_list= timeByDay.get(jour);
   		if (TimeSlot_list == null )
   		{
-  			TimeSlot_list= new ArrayList<TimeSlot> ();
+  			TimeSlot_list= new TreeSet<TimeSlot> ();
   			TimeSlot_list.add(timeSlot);
   			timeByDay.put(jour, TimeSlot_list);
   		}
@@ -67,11 +67,11 @@ public class Calendar implements Serializable {
   	}
 
 
-  	 public boolean estChevauchee(TimeSlot timeSlot ,ArrayList<TimeSlot> TimeSlot_list )
+  	 public boolean estChevauchee(TimeSlot timeSlot ,TreeSet<TimeSlot> TimeSlot_list )
   	 {
   		 //nous aurons un chauvauchement dans ces deux cas:
-  		 //Lorsque l'heure de debut du créneau est entre le debut et fin d'un autre créneau
-  	     //Lorsque l'heure de fin du créneau est entre le debut et fin d'un autre créneau
+  		 //Lorsque l'heure de debut du crï¿½neau est entre le debut et fin d'un autre crï¿½neau
+  	     //Lorsque l'heure de fin du crï¿½neau est entre le debut et fin d'un autre crï¿½neau
 
   	        boolean chevauche=false;
   	        Iterator<TimeSlot> it = TimeSlot_list.iterator();
@@ -100,10 +100,10 @@ public class Calendar implements Serializable {
   	 public void afficher() {
 
 
-           Iterator<Entry<LocalDate, ArrayList<TimeSlot>>> it_map = timeByDay.entrySet().iterator();
-           Entry<LocalDate, ArrayList<TimeSlot>> entry;
+           Iterator<Entry<LocalDate, TreeSet<TimeSlot>>> it_map = timeByDay.entrySet().iterator();
+           Entry<LocalDate,TreeSet<TimeSlot>> entry;
            LocalDate jour;
-           ArrayList<TimeSlot> TimeSlot_list;
+           TreeSet<TimeSlot> TimeSlot_list;
 
             while (it_map.hasNext())
            {

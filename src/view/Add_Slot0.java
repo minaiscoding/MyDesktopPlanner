@@ -72,7 +72,7 @@ public class Add_Slot0  extends Stage {
         Button btn1 = new Button("Add");
 	   	btn1.setPrefSize(120,40);
 	    btn1.setFont(Font.font ("Verdana", 15));
-	    btn1.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
+	    btn1.setStyle("-fx-background-color:  #82a156 ; -fx-text-fill: white;");
 	    btn1.setOnAction(event -> {
  	      Add_slot2 stage=new Add_slot2 (appData,Days.getValue());
  	     DataHandler.save(appData);
@@ -118,7 +118,7 @@ public class Add_Slot0  extends Stage {
         Button btn2 = new Button("Add");
 	   	btn2.setPrefSize(120,40);
 	    btn2.setFont(Font.font ("Verdana", 15));
-	    btn2.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
+	    btn2.setStyle("-fx-background-color:  #82a156 ; -fx-text-fill: white;");
 	    btn2.setOnAction(event -> {
 	    	DataHandler.save(appData);
  	      Add_slot3 stage=new Add_slot3 (appData,day.getValue());

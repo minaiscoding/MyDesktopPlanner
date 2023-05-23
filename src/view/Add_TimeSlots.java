@@ -55,7 +55,7 @@ public class Add_TimeSlots extends GridPane{
          	   	 Button btn1 = new Button("Add");
          	   	btn1.setPrefSize(120,40);
          	    btn1.setFont(Font.font ("Verdana", 15));
-         	    btn1.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
+         	    btn1.setStyle("-fx-background-color:  #82a156 ; -fx-text-fill: white;");
          	    btn1.setOnAction(event -> {
          	    	DataHandler.save(appData);
             	      Add_slot1 stage=new Add_slot1(appData);
@@ -74,7 +74,7 @@ public class Add_TimeSlots extends GridPane{
           		 Button btn2 = new Button("Add");
           	   	btn2.setPrefSize(120,40);
           	    btn2.setFont(Font.font ("Verdana", 15));
-          	    btn2.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
+          	    btn2.setStyle("-fx-background-color:  #82a156 ; -fx-text-fill: white;");
           	    btn2.setOnAction(event -> {
           	    	DataHandler.save(appData);
              	      Add_Slot0 stage=new Add_Slot0 (appData);
@@ -89,7 +89,7 @@ public class Add_TimeSlots extends GridPane{
           	 Button btn3 = new Button("Save");
        	   	btn3.setPrefSize(120,40);
        	    btn3.setFont(Font.font ("Verdana", 15));
-       	    btn3.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
+       	    btn3.setStyle("-fx-background-color:  #82a156 ; -fx-text-fill: white;");
        	    btn3.setOnAction(event -> {
        	    	DataHandler.save(appData);
 

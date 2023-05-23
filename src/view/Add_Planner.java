@@ -134,7 +134,7 @@ public class Add_Planner extends Stage {
 		   Button bouton = new Button("Next");
 	       bouton.setPrefSize(100,10);
 	       bouton.setFont(Font.font ("Verdana", 15));
-	       bouton.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
+	       bouton.setStyle("-fx-background-color:  #82a156 ; -fx-text-fill: white;");
 	       grid.add(bouton ,7,6,3, 1);
 	       bouton.setOnAction(event -> {
 	            // Basculer vers l'étape suivant: ajouter les créneaux libres:

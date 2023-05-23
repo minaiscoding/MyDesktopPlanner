@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class User implements Serializable{
     /**
@@ -14,7 +15,7 @@ public class User implements Serializable{
 	 */
 	private static final long serialVersionUID = 8312128879020914324L;
 	private String username;
-    private ArrayList<Task> tasks = new ArrayList<Task>();
+    private TreeSet<Task> tasks = new TreeSet<Task>();
     private Planner planner = new Planner();
 
     public User() {
@@ -32,11 +33,11 @@ public class User implements Serializable{
     }
 
 
-    public ArrayList<Task> getTasks() {
+    public TreeSet<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(ArrayList<Task> tasks) {
+    public void setTasks(TreeSet<Task> tasks) {
         this.tasks = tasks;
     }
 

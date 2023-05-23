@@ -14,6 +14,12 @@ public class TimeSlot implements Serializable {
         this.startTime = startTime;
         this.endTime = endTime;
     }
+    
+    
+	public int compareTo ( TimeSlot t)
+    {
+        return this. getStartTime().compareTo(t. getStartTime());
+    }
 
     public LocalTime getStartTime() {
         return startTime;
@@ -65,7 +71,7 @@ public class TimeSlot implements Serializable {
 		if (isFree == true) {
 		System.out.println("Etat: libre");
 	      }
-		else System.out.println("Etat: occupé");
+		else System.out.println("Etat: occupï¿½");
 		System.out.println("______________");
 	}
 }
