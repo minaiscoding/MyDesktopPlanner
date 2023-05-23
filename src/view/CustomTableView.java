@@ -1,11 +1,13 @@
 package view;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TableRow;
+import javafx.scene.paint.Color;
+import javafx.util.Callback;
 import model.Task;
 import model.Priority;
 import model.Status;
@@ -31,8 +33,8 @@ public class CustomTableView extends TableView<Task> {
         TableColumn<Task, LocalDate> deadlineCol = new TableColumn<>("Deadline");
         deadlineCol.setCellValueFactory(new PropertyValueFactory<>("deadline"));
 
-        TableColumn<Task, Boolean> unscheduledCol = new TableColumn<>("Unscheduled");
-        unscheduledCol.setCellValueFactory(new PropertyValueFactory<>("is_scheduled"));
+       // TableColumn<Task, Boolean> isScheduledCol = new TableColumn<>("Is Scheduled");
+       // isScheduledCol.setCellValueFactory(new PropertyValueFactory<>("is_scheduled"));
 
         TableColumn<Task, Status> statusCol = new TableColumn<>("Status");
         statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
@@ -40,7 +42,7 @@ public class CustomTableView extends TableView<Task> {
         TableColumn<Task, Category> categoryCol = new TableColumn<>("Category");
         categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
 
-        getColumns().addAll(nameCol, durationCol, priorityCol, deadlineCol, unscheduledCol, statusCol, categoryCol);
+        getColumns().addAll(nameCol, durationCol, priorityCol, deadlineCol,  statusCol, categoryCol);
         getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         if (taskList == null) {
@@ -48,5 +50,24 @@ public class CustomTableView extends TableView<Task> {
         } else {
             setItems(FXCollections.observableArrayList(taskList));
         }
+
+        // Set row factory to customize row styling
+        setRowFactory(new Callback<TableView<Task>, TableRow<Task>>() {
+            @Override
+            public TableRow<Task> call(TableView<Task> tableView) {
+                return new TableRow<Task>() {
+                    @Override
+                    protected void updateItem(Task task, boolean empty) {
+                        super.updateItem(task, empty);
+
+                        if (task != null && task.isscheduled()) {
+                            setStyle("-fx-background-color: lightgray;");
+                        } else {
+                            setStyle("");
+                        }
+                    }
+                };
+            }
+        });
     }
 }

@@ -30,46 +30,6 @@ public class MyDesktopPlanner extends Application {
      AppData appData = new AppData();
      appData = DataHandler.load();
      if(appData.isUserSignedIn()){
-    	 appData.getCurrentUser().getPlanner().setCalendar(new Calendar());
-    	 Calendar calendar = appData.getCurrentUser().getPlanner().getCalendar();
-    	 TreeMap<LocalDate, ArrayList<TimeSlot>> timeByDay = new TreeMap<LocalDate, ArrayList<TimeSlot>>();
-
-         LocalDate startDate = LocalDate.now(); // Start from today
-         int numOfDays = 7; // Number of days in the week
-
-         for (int i = 0; i < numOfDays; i++) {
-             LocalDate date = startDate.plusDays(i);
-             ArrayList<TimeSlot> timeSlots = new ArrayList<>();
-
-             // Create five time slots for each day
-             LocalTime startTime = LocalTime.of(9, 0); // Start time
-             int slotDurationInMinutes = 60; // Duration of each time slot in minutes
-
-             for (int j = 0; j < 5; j++) {
-                 LocalTime endTime = startTime.plusMinutes(slotDurationInMinutes);
-                 TimeSlot timeSlot = new TimeSlot(startTime, endTime);
-                 timeSlots.add(timeSlot);
-                 startTime = endTime; // Set the start time of the next time slot
-             }
-
-             timeByDay.put(date, timeSlots);
-         }
-
-
-         calendar.setTimeByDay(timeByDay);
-         DataHandler.save(appData);
-
-         // Print the calendar to verify the initialization
-         for (Entry<LocalDate, ArrayList<TimeSlot>> entry : calendar.getTimeByDay().entrySet()) {
-             LocalDate date = entry.getKey();
-             List<TimeSlot> timeSlots = entry.getValue();
-             System.out.println("Date: " + date);
-             for (TimeSlot timeSlot : timeSlots) {
-                 System.out.println("Start Time: " + timeSlot.getStartTime());
-                 System.out.println("End Time: " + timeSlot.getEndTime());
-                 System.out.println();
-             }
-         }
 
     	 ArrayList<Task> taskList = new ArrayList<>();
     	 Category cat1 = new Category("Study");

@@ -64,11 +64,11 @@ public abstract class Task implements Comparable <Task>, Serializable {
         this.deadline = deadline;
     }
 
-    public boolean isUnscheduled() {
+    public boolean isscheduled() {
         return is_scheduled;
     }
 
-    public void setUnscheduled(boolean unscheduled) {
+    public void setscheduled(boolean unscheduled) {
         this.is_scheduled = unscheduled;
     }
 
