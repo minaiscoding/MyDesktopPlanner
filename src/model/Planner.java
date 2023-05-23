@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import javafx.scene.control.Alert;
 
@@ -52,7 +53,7 @@ public class Planner implements Serializable {
         this.name = name;
         this.first_Day = first;
         this.last_Day = last;
-        TreeMap<LocalDate, ArrayList<TimeSlot>> TimeSlotsPerDay = new TreeMap<LocalDate, ArrayList<TimeSlot>>();
+        TreeMap<LocalDate, TreeSet<TimeSlot>> TimeSlotsPerDay = new TreeMap<LocalDate, TreeSet<TimeSlot>>();
         Calendar calen = new Calendar(TimeSlotsPerDay);
         this.calendar = calen;
     }

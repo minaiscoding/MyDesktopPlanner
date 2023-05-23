@@ -1,4 +1,5 @@
 package view;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.SelectionMode;
@@ -16,10 +17,11 @@ import model.Category;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class CustomTableView extends TableView<Task> {
 
-    public CustomTableView(ArrayList<Task> taskList) {
+    public CustomTableView(TreeSet<Task> taskSet) {
         // Create table columns and set their cell value factories
         TableColumn<Task, String> nameCol = new TableColumn<>("Task");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -33,8 +35,8 @@ public class CustomTableView extends TableView<Task> {
         TableColumn<Task, LocalDate> deadlineCol = new TableColumn<>("Deadline");
         deadlineCol.setCellValueFactory(new PropertyValueFactory<>("deadline"));
 
-       // TableColumn<Task, Boolean> isScheduledCol = new TableColumn<>("Is Scheduled");
-       // isScheduledCol.setCellValueFactory(new PropertyValueFactory<>("is_scheduled"));
+        // TableColumn<Task, Boolean> isScheduledCol = new TableColumn<>("Is Scheduled");
+        // isScheduledCol.setCellValueFactory(new PropertyValueFactory<>("is_scheduled"));
 
         TableColumn<Task, Status> statusCol = new TableColumn<>("Status");
         statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
@@ -42,13 +44,13 @@ public class CustomTableView extends TableView<Task> {
         TableColumn<Task, Category> categoryCol = new TableColumn<>("Category");
         categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
 
-        getColumns().addAll(nameCol, durationCol, priorityCol, deadlineCol,  statusCol, categoryCol);
+        getColumns().addAll(nameCol, durationCol, priorityCol, deadlineCol, statusCol, categoryCol);
         getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        if (taskList == null) {
+        if (taskSet == null) {
             setItems(FXCollections.observableArrayList(new ArrayList<>()));
         } else {
-            setItems(FXCollections.observableArrayList(taskList));
+            setItems(FXCollections.observableArrayList(taskSet));
         }
 
         // Set row factory to customize row styling

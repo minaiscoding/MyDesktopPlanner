@@ -28,6 +28,7 @@ import model.Task;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class TaskView {
     private TasksController controller;
@@ -39,7 +40,7 @@ public class TaskView {
     }
 
     public void show(Stage stage) {
-        ArrayList<Task> taskList = controller.getAppData().getCurrentUser().getTasks();
+        TreeSet<Task> taskList = controller.getAppData().getCurrentUser().getTasks();
 
         // Create the navigation bar
         NavBar navBar = new NavBar(stage, controller.getAppData());

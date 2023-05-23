@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import com.sun.javafx.collections.MappingChange.Map;
 
@@ -31,7 +32,7 @@ public class MyDesktopPlanner extends Application {
      appData = DataHandler.load();
      if(appData.isUserSignedIn()){
 
-    	 ArrayList<Task> taskList = new ArrayList<>();
+    	 TreeSet<Task> taskList = new TreeSet<>();
     	 Category cat1 = new Category("Study");
 
     	 Task_simple task1 = new Task_simple("Task 1", Duration.ofMinutes(60), Priority.HIGH, LocalDate.now(), false, Status.notRealised, cat1);

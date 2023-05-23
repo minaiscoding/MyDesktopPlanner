@@ -28,9 +28,9 @@ public abstract class Task implements Comparable <Task>, Serializable {
         this.status = status;
         this.category = category;
     }
-    public int compareTo (Task t)
-    {
-        return this.priority.compareTo(t.getPriority());
+    @Override
+    public int compareTo(Task other) {
+        return this.priority.compareTo(other.priority);
     }
     public String getNom() {
         return nom;

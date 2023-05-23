@@ -37,8 +37,8 @@ public class User implements Serializable{
         return tasks;
     }
 
-    public void setTasks(TreeSet<Task> tasks) {
-        this.tasks = tasks;
+    public void setTasks(TreeSet<Task> taskss) {
+        this.tasks = taskss;
     }
 
     public Planner getPlanner() {

@@ -2,7 +2,7 @@ package model;
 import java.io.Serializable;
 import java.time.LocalTime;
 
-public class TimeSlot implements Serializable {
+public class TimeSlot implements Serializable, Comparable<TimeSlot> {
     private static final long serialVersionUID = 8539494544992388816L;
     private LocalTime startTime;
     private LocalTime endTime;
@@ -14,13 +14,12 @@ public class TimeSlot implements Serializable {
         this.startTime = startTime;
         this.endTime = endTime;
     }
-    
-    
-	public int compareTo ( TimeSlot t)
-    {
-        return this. getStartTime().compareTo(t. getStartTime());
-    }
 
+
+    @Override
+    public int compareTo(TimeSlot other) {
+        return this.startTime.compareTo(other.startTime);
+    }
     public LocalTime getStartTime() {
         return startTime;
     }
