@@ -239,12 +239,13 @@ public class Ajout_tache extends Stage {
 	    	 grid.add(btn ,3,8,4, 1);
 
 
-	    	 Button btn3 = new Button("Afficher  ");
+	    	 Button btn3 = new Button("Save  ");
 	       	   	btn3.setPrefSize(160,40);
 	       	    btn3.setFont(Font.font ("Verdana", 15));
 	       	    btn3.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
 	       	    btn3.setOnAction(event -> {
-	       	      //this.model.afficher_Tasks();
+	       	      DataHandler.save(appData);
+close();
 
 	          	       });
 
