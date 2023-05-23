@@ -15,7 +15,7 @@ public class User implements Serializable{
 	 */
 	private static final long serialVersionUID = 8312128879020914324L;
 	private String username;
-    private TreeSet<Task> tasks = new TreeSet<Task>();
+    private ArrayList<Task> tasks = new ArrayList<Task>();
     private Planner planner = new Planner();
 
     public User() {
@@ -33,12 +33,12 @@ public class User implements Serializable{
     }
 
 
-    public TreeSet<Task> getTasks() {
+    public ArrayList<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(TreeSet<Task> taskss) {
-        this.tasks = taskss;
+    public void setTasks(ArrayList<Task> taskList) {
+        this.tasks = taskList;
     }
 
     public Planner getPlanner() {

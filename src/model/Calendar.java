@@ -52,6 +52,7 @@ public class Calendar implements Serializable {
 
   			if (estChevauchee(timeSlot,TimeSlot_list)== false)
   			{
+
   				TimeSlot_list.add(timeSlot);
   			}
   			else
@@ -65,6 +66,21 @@ public class Calendar implements Serializable {
 
 
   	}
+  	public void UpdateTimeSlot(LocalDate startDay,TimeSlot timeSlot) {
+
+  	    TreeSet<TimeSlot> timeSlotList = timeByDay.get(startDay);
+
+
+  	    if (timeSlotList == null) {
+  	    	System.out.print("Here");
+  	        timeSlotList = new TreeSet<>();
+  	        timeByDay.put(startDay, timeSlotList);
+  	    }
+  	  timeSlotList.remove(timeSlot);
+
+  	    timeSlotList.add(timeSlot);
+  	}
+
 
 
   	 public boolean estChevauchee(TimeSlot timeSlot ,TreeSet<TimeSlot> TimeSlot_list )
@@ -78,6 +94,7 @@ public class Calendar implements Serializable {
   	        while (it.hasNext())
   	        	{
   	        	TimeSlot c = it.next();
+  	        	c.afficher();
   	            LocalTime hD = c.getStartTime();
   	            LocalTime hF = c.getEndTime();
   	            LocalTime D=timeSlot.getStartTime();

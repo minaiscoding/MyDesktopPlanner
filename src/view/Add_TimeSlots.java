@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints ;
 
@@ -92,6 +93,9 @@ public class Add_TimeSlots extends GridPane{
        	    btn3.setStyle("-fx-background-color:  #82a156 ; -fx-text-fill: white;");
        	    btn3.setOnAction(event -> {
        	    	DataHandler.save(appData);
+       	    	Stage stage = (Stage) btn3.getScene().getWindow();
+       	     stage.close();
+
 
           	       });
 

@@ -21,7 +21,7 @@ import java.util.TreeSet;
 
 public class CustomTableView extends TableView<Task> {
 
-    public CustomTableView(TreeSet<Task> taskSet) {
+    public CustomTableView(ArrayList<Task> taskList) {
         // Create table columns and set their cell value factories
         TableColumn<Task, String> nameCol = new TableColumn<>("Task");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -47,10 +47,10 @@ public class CustomTableView extends TableView<Task> {
         getColumns().addAll(nameCol, durationCol, priorityCol, deadlineCol, statusCol, categoryCol);
         getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        if (taskSet == null) {
+        if (taskList == null) {
             setItems(FXCollections.observableArrayList(new ArrayList<>()));
         } else {
-            setItems(FXCollections.observableArrayList(taskSet));
+            setItems(FXCollections.observableArrayList(taskList));
         }
 
         // Set row factory to customize row styling

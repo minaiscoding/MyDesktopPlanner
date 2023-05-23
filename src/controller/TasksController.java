@@ -39,7 +39,29 @@ public class TasksController {
 
 
 	 }
-	 public void PlanManualy(Task task, LocalDate startDay, LocalTime startTime) {
+	 public void PlanManualy(Task task,LocalDate jour ,TimeSlot timeslot,boolean blocked) {
+		 if(!task.getDuration().isZero()){
+		 TimeSlot[] timeSlots = timeslot.decompose(task.getDuration());
+
+		// Accessing the data from the array
+		TimeSlot oldtime = timeSlots[0];
+		TimeSlot freetime = timeSlots[1];
+		 oldtime.setTask(task);
+		 task.setscheduled(true);
+		 oldtime.setFree(false);
+		 oldtime.setBlocked(blocked);
+
+		 appData.getCurrentUser().getPlanner().getCalendar().UpdateTimeSlot(jour, oldtime);
+		 appData.getCurrentUser().getPlanner().getCalendar().add_TimeSlot(jour, freetime);
+		 DataHandler.save(appData);}
+		 else{
+			 timeslot.setTask(task);
+			 task.setscheduled(true);
+			 timeslot.setFree(false);
+			 timeslot.setBlocked(blocked);
+
+		 }
+
 
 		}
 

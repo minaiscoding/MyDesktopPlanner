@@ -13,6 +13,14 @@ public class Task_composed extends Task implements Decomposable  {
 
 	private Task[] Sous_taches;
 
+	@Override
+	public Task[] decompose(Duration duree) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
 
 
 

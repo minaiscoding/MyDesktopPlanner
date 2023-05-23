@@ -19,7 +19,7 @@ import java.util.*;
 
 public class Ajout_tache extends Stage {
 
-
+	private AppData appData;
 	private User model;
 	private DatePicker deadline;
 	private TextField nom;
@@ -28,11 +28,12 @@ public class Ajout_tache extends Stage {
 	private Spinner<Integer> minutesSpinner;
 
    // constructor of the Stage
-   public Ajout_tache(User user) {
+   public Ajout_tache(AppData appData) {
 
 	   this.setTitle("Add a task");
 	   this.setResizable(false);
-	   this.model=user;
+	   this.model=appData.getCurrentUser();
+	   this.appData = appData;
 
 
         // Create a GridPane layout
@@ -83,7 +84,7 @@ public class Ajout_tache extends Stage {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
-                LocalDate startDate = LocalDate.now(); // DÃ©finir votre jour de dÃ©but ici
+                LocalDate startDate = LocalDate.now(); // Définir votre jour de début ici
                 setDisable(empty || date.compareTo(startDate) < 0);
             }
         });
@@ -145,6 +146,7 @@ public class Ajout_tache extends Stage {
 
          category= new ChoiceBox();
         HashSet<Category> cat= model.getPlanner().getCategories();
+        if(cat == null){cat = new HashSet<Category>();}
         Iterator<Category> it = cat.iterator();
         while (it.hasNext())
     	{
@@ -183,6 +185,7 @@ public class Ajout_tache extends Stage {
 	    	 //category
 	    	 String cate = category.getValue();
 	    	 HashSet<Category> catt= model.getPlanner().getCategories();
+	    	 if(catt == null){catt = new HashSet<Category>();}
 	         Iterator<Category> itt = catt.iterator();
 	         Category C;
 	         Category categorie = null;
@@ -224,6 +227,8 @@ public class Ajout_tache extends Stage {
 	    	  decomp.getSelectionModel().clearSelection();
 	    	  hoursSpinner.getValueFactory().setValue(0);
 	    	  minutesSpinner.getValueFactory().setValue(0);
+	    	  DataHandler.save(appData);
+	    	  close();
 
 
          	       });
@@ -275,4 +280,3 @@ public class Ajout_tache extends Stage {
 
 
 }
-
