@@ -74,7 +74,8 @@ public class TaskView {
 
         // Enable multiple selection in the table view
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-     // Create the "Plan" button
+
+        // Create the "Plan" button
         Button planButton = new Button("Plan");
         planButton.setOnAction(e -> {
             // Create a new stage for the plan options window
@@ -88,11 +89,12 @@ public class TaskView {
 
             // Set the actions for the manual and automatic buttons
             manualButton.setOnAction(event -> {
-            	 ObservableList<Task> selectedTasks = tableView.getSelectionModel().getSelectedItems();
-
-                handleManualPlanning(selectedTasks);
+                ObservableList<Task> selectedTasks = tableView.getSelectionModel().getSelectedItems();
+               // handleManualPlanning(selectedTasks);
+                ChooseTimeView chooseTimeView = new ChooseTimeView(controller.getAppData());
+                chooseTimeView.show();
                 planOptionsStage.close();
-             // Refresh the table view
+                // Refresh the table view
                 tableView.refresh();
             });
 
@@ -112,8 +114,25 @@ public class TaskView {
             planOptionsStage.show();
         });
 
-        // Add the button to the VBox
-        vbox.getChildren().addAll(titleLabel, tableView, markAsDoneButton,planButton);
+        // Create the "Add a Task" button
+        Button addTaskButton = new Button("Add a Task");
+        addTaskButton.setOnAction(event -> {
+            // Handle the action for adding a task
+        	Ajout_tache addTask= new Ajout_tache(controller.getAppData());
+        	tableView.refresh();
+     		addTask.show();
+     		tableView.refresh();
+        });
+
+        // Add the buttons to the actions box
+        HBox actionsBox = new HBox();
+        actionsBox.setSpacing(10);
+        actionsBox.setAlignment(Pos.CENTER_LEFT);
+        actionsBox.setPadding(new Insets(10));
+        actionsBox.getChildren().addAll( addTaskButton,markAsDoneButton, planButton);
+
+        // Add the title label, table view, and actions box to the VBox
+        vbox.getChildren().addAll(titleLabel, tableView, actionsBox);
 
         // Set the VBox as the center of the BorderPane
         root.setCenter(vbox);
@@ -126,9 +145,6 @@ public class TaskView {
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
-
-
-
     }
 
     private void handleManualPlanning(ObservableList<Task> selectedTasks) {

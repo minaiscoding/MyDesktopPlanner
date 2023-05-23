@@ -46,7 +46,7 @@ public class FirstTimeView {
 	        nextButton.setOnAction(event -> {
 
 	        	Add_Planner stage = new Add_Planner(controller.getAppData());
-	     	   //	Ajout_tache stage= new Ajout_tache(Nada);
+	     	   	
 	     		stage.show();
 
 	        });
