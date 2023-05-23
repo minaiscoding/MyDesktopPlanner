@@ -170,4 +170,7 @@ public class Planner implements Serializable {
         }
         return count;
     }
+    public int getTotalBadges() {
+        return badges.size();
+    }
 }

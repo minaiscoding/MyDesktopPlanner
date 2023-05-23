@@ -11,7 +11,12 @@ public class Projet implements Serializable{
     private String description;
     private ArrayList<Task> taches;
 
-    public void setNom(String nom) {
+    public Projet(String projectName, String projectDescription) {
+		this.nom = projectName;
+		this.description =  projectDescription;
+	}
+
+	public void setNom(String nom) {
         this.nom = nom;
     }
 

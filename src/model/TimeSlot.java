@@ -9,7 +9,7 @@ public class TimeSlot implements Serializable, Comparable<TimeSlot>,Decomposable
     private LocalTime startTime;
     private LocalTime endTime;
     private Task task;
-    private boolean isFree;
+    private boolean isFree = true;
     private boolean isBlocked;
 
     public TimeSlot(LocalTime startTime, LocalTime endTime) {

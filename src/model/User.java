@@ -16,6 +16,7 @@ public class User implements Serializable{
 	private static final long serialVersionUID = 8312128879020914324L;
 	private String username;
     private ArrayList<Task> tasks = new ArrayList<Task>();
+    private ArrayList<Projet> projects = new ArrayList<Projet>();
     private Planner planner = new Planner();
 
     public User() {
@@ -49,45 +50,11 @@ public class User implements Serializable{
         this.planner = planner;
     }
 
-    public boolean isValidUser(String username, String password) {
-        // check if user exists in database
-        File file = new File("users.txt");
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts[0].equals(username) && parts[1].equals(password)) {
-                    return true;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;    // return true if user exists and password matches, false otherwise
+    public ArrayList<Projet> getProjects() {
+        return projects;
     }
 
-    public boolean registerUser(String username, String password) {
-        // check if user already exists in database
-        File file = new File("users.txt");
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts[0].equals(username)) {
-                    return false; // user already exists
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // add new user to database
-        try (FileWriter writer = new FileWriter(file, true)) {
-            writer.write(username + "," + password + "\n");
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
+    public void setProjects(ArrayList<Projet> projectList) {
+        this.projects = projectList;
     }
 }

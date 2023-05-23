@@ -40,7 +40,7 @@ public class TasksController {
 
 	 }
 	 public void PlanManualy(Task task,LocalDate jour ,TimeSlot timeslot,boolean blocked) {
-		 if(!task.getDuration().isZero()){
+		 if(task.getDuration()!= Duration.between(timeslot.getStartTime(),timeslot.getEndTime())){
 		 TimeSlot[] timeSlots = timeslot.decompose(task.getDuration());
 
 		// Accessing the data from the array
