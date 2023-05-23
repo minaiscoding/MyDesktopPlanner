@@ -50,7 +50,7 @@ public class Planner implements Serializable {
     }
 
     public Planner(String name, LocalDate first, LocalDate last) {
-        this.name = name;
+        this.setName(name);
         this.first_Day = first;
         this.last_Day = last;
         TreeMap<LocalDate, TreeSet<TimeSlot>> TimeSlotsPerDay = new TreeMap<LocalDate, TreeSet<TimeSlot>>();
@@ -163,6 +163,7 @@ public class Planner implements Serializable {
 
     public int getNumBadge(Badge badge) {
         int count = 0;
+        if(badges == null){return 0;}
         for (Badge b : badges) {
             if (b.equals(badge)) {
                 count++;
@@ -171,6 +172,15 @@ public class Planner implements Serializable {
         return count;
     }
     public int getTotalBadges() {
+    	if(badges == null){return 0;}
         return badges.size();
     }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

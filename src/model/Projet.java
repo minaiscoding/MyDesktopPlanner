@@ -1,22 +1,20 @@
 package model;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
 
-public class Projet implements Serializable{
-    /**
-	 *
-	 */
-	private static final long serialVersionUID = 8613010725643629898L;
-	private String nom;
+public class Projet implements Serializable {
+    private static final long serialVersionUID = 8613010725643629898L;
+    private String nom;
     private String description;
     private ArrayList<Task> taches;
 
     public Projet(String projectName, String projectDescription) {
-		this.nom = projectName;
-		this.description =  projectDescription;
-	}
+        this.nom = projectName;
+        this.description = projectDescription;
+        this.taches = new ArrayList<>();
+    }
 
-	public void setNom(String nom) {
+    public void setNom(String nom) {
         this.nom = nom;
     }
 
@@ -39,5 +37,13 @@ public class Projet implements Serializable{
     public ArrayList<Task> getTaches() {
         return taches;
     }
-}
 
+    public boolean finished() {
+        for (Task task : taches) {
+            if (task.getStatus()!= Status.completed) {
+                return false;
+            }
+        }
+        return true;
+    }
+}

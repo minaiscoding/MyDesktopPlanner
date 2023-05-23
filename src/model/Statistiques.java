@@ -101,4 +101,23 @@ public class Statistiques implements Serializable {
         VBox vbox = new VBox(titleLabel, totalLabel, completedLabel, pendingLabel);
         vbox.setPadding(new Insets(10));
         return vbox;
-    }}
+    }
+    public static void createHistoryPlanner(HistoryPlanner historyPlanner,AppData appData) {
+        historyPlanner.setName(appData.getCurrentUser().getPlanner().getName());
+        historyPlanner.setNumBadges(appData.getCurrentUser().getPlanner().getTotalBadges());
+        historyPlanner.setGood(appData.getCurrentUser().getPlanner().getNumBadge(Badge.GOOD));
+        historyPlanner.setVeryGood(appData.getCurrentUser().getPlanner().getNumBadge(Badge.VERYGOOD));
+        historyPlanner.setExcellent(appData.getCurrentUser().getPlanner().getNumBadge(Badge.EXCELLENT));
+        historyPlanner.setFinishedTasks(appData.getCurrentUser().getPlanner().getTasksDone());
+        historyPlanner.setFinishedProjects(countFinishedProjects(appData.getCurrentUser().getProjects()));
+    }
+    private static int countFinishedProjects(ArrayList<Projet> projects) {
+        int count = 0;
+        for (Projet project : projects) {
+            if (project.finished()) {
+                count++;
+            }
+        }
+        return count;
+    }
+    }

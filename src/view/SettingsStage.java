@@ -6,10 +6,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.AppData;
+import model.HistoryData;
+import model.HistoryPlanner;
+import model.Statistiques;
 
 public class SettingsStage extends Stage {
+	private AppData appData;
 
-    public SettingsStage() {
+    public SettingsStage(AppData appData) {
+    	this.appData = appData;
         setTitle("Settings");
         setResizable(false);
 
@@ -25,6 +31,17 @@ public class SettingsStage extends Stage {
         Button addCategoryButton = new Button("Add a new Category");
         Button changeMinDurationButton = new Button("Change the minimal duration of timeslots");
         Button saveAndStartButton = new Button("Save and start a new planner");
+        saveAndStartButton.setOnAction(event -> {
+        	HistoryPlanner tosave = new HistoryPlanner();
+        	Statistiques.createHistoryPlanner(tosave, appData);
+        	HistoryData saver = new HistoryData();
+        	saver = HistoryData.loadFromFile();
+        	saver.addHistoryPlanner(tosave);
+        	saver.saveToFile();
+        	Add_Planner newPlanner = new Add_Planner(appData);
+        	newPlanner.show();
+
+        });
 
         // Add button actions here
 

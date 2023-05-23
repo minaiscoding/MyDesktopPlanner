@@ -61,7 +61,7 @@ public class NavBar extends VBox {
 
         VBox.setMargin(logoutButton, new Insets(Screen.getPrimary().getBounds().getHeight()*0.4, 0, 0, 0));
         settingsButton.setOnAction(event ->{
-        	SettingsStage settingsStage = new SettingsStage();
+        	SettingsStage settingsStage = new SettingsStage(appData);
             settingsStage.show();
 
         });
@@ -80,6 +80,11 @@ public class NavBar extends VBox {
 
            StatisticView stats = new StatisticView(appData);
             stats.show(stage);
+        });
+       historyButton.setOnAction(event -> {
+
+    	   HistoryPageView history = new HistoryPageView(appData);
+           history.show(stage);
         });
 
         logoutButton.setOnAction(event -> {
