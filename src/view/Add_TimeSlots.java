@@ -95,6 +95,7 @@ public class Add_TimeSlots extends GridPane{
        	    	DataHandler.save(appData);
        	    	Stage stage = (Stage) btn3.getScene().getWindow();
        	     stage.close();
+       	     
 
 
           	       });

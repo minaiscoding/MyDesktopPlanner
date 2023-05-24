@@ -44,9 +44,12 @@ public class FirstTimeView {
 	        nextButton.setLayoutY(622);
 	        nextButton.setStyle("-fx-background-color: #82a156; -fx-background-radius: 30px; -fx-text-fill: white; -fx-font-weight: bold;");
 	        nextButton.setOnAction(event -> {
+	        	HomePageView home = new HomePageView(controller.getAppData());
+	       	     home.show(primaryStage);
+
 
 	        	Add_Planner stage = new Add_Planner(controller.getAppData());
-	     	   //	Ajout_tache stage= new Ajout_tache(Nada);
+
 	     		stage.show();
 
 	        });

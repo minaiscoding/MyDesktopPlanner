@@ -31,9 +31,8 @@ public class MyDesktopPlanner extends Application {
      AppData appData = new AppData();
      appData = DataHandler.load();
      if(appData.isUserSignedIn()){
-    	 TasksController Tcontroller = new TasksController(appData);
-    	 TaskView tasks = new TaskView(Tcontroller);
-    	 tasks.show(primaryStage);
+    	 HomePageView home = new HomePageView(appData);
+	     home.show(primaryStage);
      }
      else{
     	 WelcomePageView welcomePage = new WelcomePageView();

@@ -53,9 +53,9 @@ public class Planner implements Serializable {
 
     //initialiser Calendrier
 
-    TreeMap<LocalDate, TreeSet<TimeSlot>> CréneauParJour= new TreeMap<LocalDate, TreeSet<TimeSlot>>();
+    TreeMap<LocalDate, TreeSet<TimeSlot>> CreneauParJour= new TreeMap<LocalDate, TreeSet<TimeSlot>>();
 
-    Calendar calen= new Calendar (CréneauParJour);
+    Calendar calen= new Calendar (CreneauParJour);
 
     this.calendar=calen;
 

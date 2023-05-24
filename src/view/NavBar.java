@@ -71,6 +71,10 @@ public class NavBar extends VBox {
             TaskView tasks = new TaskView(Tcontroller);
             tasks.show(stage);
         });
+        homeButton.setOnAction(event -> {
+        	HomePageView home = new HomePageView(appData);
+    	     home.show(stage);
+        });
         projectsButton.setOnAction(event -> {
 
             ProjectsView projets = new ProjectsView(appData);
@@ -86,6 +90,7 @@ public class NavBar extends VBox {
     	   HistoryPageView history = new HistoryPageView(appData);
            history.show(stage);
         });
+
 
         logoutButton.setOnAction(event -> {
             appData.setUserSignedIn(false);

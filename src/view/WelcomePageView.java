@@ -59,6 +59,12 @@ public void setController(WelcomeController welcomeController) {
             	FirstTimeController Fcontroller = new FirstTimeController(controller.getAppData());
             	FirstTimeView first = new FirstTimeView(Fcontroller);
             first.show(primaryStage);}
+            else{
+            	HomePageView home = new HomePageView(controller.getAppData());
+            	home.show(primaryStage);
+
+            }
+
 
         });
 
