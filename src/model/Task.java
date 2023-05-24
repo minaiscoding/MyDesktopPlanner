@@ -28,10 +28,7 @@ public abstract class Task implements Comparable <Task>, Serializable {
         this.status = status;
         this.category = category;
     }
-    @Override
-    public int compareTo(Task other) {
-        return this.priority.compareTo(other.priority);
-    }
+
     public String getNom() {
         return nom;
     }
@@ -97,4 +94,25 @@ public abstract class Task implements Comparable <Task>, Serializable {
 		System.out.println("Category:"+category.getType());//
 
 	}
+    @Override
+
+    public int compareTo(Task task) {
+
+    // Comparaison par deadline
+
+    int deadlineComparison = this.deadline.compareTo(task.getDeadline());
+
+    // Si les deadlines sont différentes, retourne le résultat de la comparaison des deadlines
+
+    if (deadlineComparison != 0)
+
+    {
+
+    return deadlineComparison;
+
+    }
+
+    else return this.priority.compareTo(task.getPriority());// Sinon on fait la comparaison parraport priority
+
+    }
 }

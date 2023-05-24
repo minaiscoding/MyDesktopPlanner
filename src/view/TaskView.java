@@ -78,43 +78,12 @@ public class TaskView {
         // Create the "Plan" button
         Button planButton = new Button("Plan");
         planButton.setOnAction(e -> {
-            // Create a new stage for the plan options window
-            Stage planOptionsStage = new Stage();
-            planOptionsStage.initStyle(StageStyle.UTILITY);
 
-            // Create the labels and buttons for manual and automatic planning options
-            Label messageLabel = new Label("How do you want to plan the selected tasks?");
-            Button manualButton = new Button("Manual");
-            Button automaticButton = new Button("Automatic");
+        	ObservableList<Task> selectedTasks = tableView.getSelectionModel().getSelectedItems();
+        	ArrayList<Task> SelectedTasks = new ArrayList<>(selectedTasks);
+        	Planifier0 plan = new Planifier0(controller.getAppData(),SelectedTasks);
 
-            // Set the actions for the manual and automatic buttons
-            manualButton.setOnAction(event -> {
-                ObservableList<Task> selectedTasks = tableView.getSelectionModel().getSelectedItems();
-                for (Task task : selectedTasks) {
-                	if(task != null){
-                	ChooseTimeView chooseTimeView = new ChooseTimeView(controller.getAppData(),task);
-                    chooseTimeView.show();}
-                }
-
-                planOptionsStage.close();
-                // Refresh the table view
-                tableView.refresh();
-            });
-
-            automaticButton.setOnAction(event -> {
-                handleAutomaticPlanning();
-                planOptionsStage.close();
-            });
-
-            // Create a VBox to hold the labels and buttons
-            VBox planOptionsVBox = new VBox(10);
-            planOptionsVBox.setPadding(new Insets(10));
-            planOptionsVBox.getChildren().addAll(messageLabel, manualButton, automaticButton);
-
-            // Create a scene for the plan options window
-            Scene planOptionsScene = new Scene(planOptionsVBox);
-            planOptionsStage.setScene(planOptionsScene);
-            planOptionsStage.show();
+        	plan.show();
         });
 
         // Create the "Add a Task" button
@@ -150,57 +119,7 @@ public class TaskView {
         stage.show();
     }
 
-    private void handleManualPlanning(ObservableList<Task> selectedTasks) {
-     /*   // Iterate over the selected tasks
-        for (Task task : selectedTasks) {
-            // Create a new stage for each task's manual planning window
-            Stage manualPlanningStage = new Stage();
-            manualPlanningStage.initStyle(StageStyle.UTILITY);
 
-            // Create labels and input fields for start day and start time
-            Label startDayLabel = new Label("Start Day:");
-            DatePicker startDayPicker = new DatePicker();
-
-            Label startTimeLabel = new Label("Start Time:");
-            TimePicker startTimePicker = new TimePicker();
-
-            // Create the plan button
-            Button planButton = new Button("Plan");
-            planButton.setOnAction(event -> {
-                // Get the start day and start time from the input fields
-                LocalDate startDay = startDayPicker.getValue();
-                LocalTime startTime = startTimePicker.getValue();
-
-                // Plan the task with the specified start day and start time
-                controller.PlanManualy(task, startDay, startTime);
-
-
-
-                // Close the manual planning window
-                manualPlanningStage.close();
-            });
-
-            // Create a VBox to hold the labels, input fields, and button
-            VBox manualPlanningVBox = new VBox(10);
-            manualPlanningVBox.setPadding(new Insets(10));
-            manualPlanningVBox.getChildren().addAll(startDayLabel, startDayPicker, startTimeLabel, startTimePicker, planButton);
-
-            // Create a scene for the manual planning window
-            Scene manualPlanningScene = new Scene(manualPlanningVBox);
-            manualPlanningStage.setScene(manualPlanningScene);
-            manualPlanningStage.showAndWait();
-        }*/
-    }
-
-
-    private void handleAutomaticPlanning() {
-        // Implementation for automatic planning
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Automatic Planning");
-        alert.setHeaderText(null);
-        alert.setContentText("You have selected Automatic planning.");
-        alert.showAndWait();
-    }
 }
 
 class TimePicker extends HBox {

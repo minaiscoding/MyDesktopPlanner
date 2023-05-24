@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -24,8 +25,64 @@ public class Planner implements Serializable {
     private LocalDate last_Day;
     private String name;
     private LocalDate lastResetDate;
+    private Duration minTimeSlot =Duration.ofMinutes(30);
+
+    public Duration getMinTimeSlot() {
+
+    return minTimeSlot;
+
+    }
+
+    public void setMinTimeSlot(Duration minTimeSlot) {
+
+    this.minTimeSlot = minTimeSlot;
+
+    }
 
     public Planner() {
+    }
+    public Planner(String name, LocalDate first, LocalDate last )
+
+    {
+
+    this.name=name;
+
+    this.first_Day=first;
+
+    this.last_Day=last;
+
+    //initialiser Calendrier
+
+    TreeMap<LocalDate, TreeSet<TimeSlot>> CréneauParJour= new TreeMap<LocalDate, TreeSet<TimeSlot>>();
+
+    Calendar calen= new Calendar (CréneauParJour);
+
+    this.calendar=calen;
+
+    //initialiser les categories:
+
+    HashSet<Category> cat= new HashSet<Category>();
+
+    Category C1= new Category("Sport ");
+
+    Category C2= new Category("Study ");
+
+    Category C3= new Category("Work ");
+
+    Category C4= new Category("Hobby ");
+
+    cat.add(C1);
+
+    cat.add(C2);
+
+    cat.add(C3);
+
+    cat.add(C4);
+
+    cat.add(C3);
+
+    this.categories=cat;
+
     }
 
     public Planner(Calendar calendar, HashSet<Category> categories) {
@@ -49,14 +106,7 @@ public class Planner implements Serializable {
         this.last_Day = last_Day;
     }
 
-    public Planner(String name, LocalDate first, LocalDate last) {
-        this.setName(name);
-        this.first_Day = first;
-        this.last_Day = last;
-        TreeMap<LocalDate, TreeSet<TimeSlot>> TimeSlotsPerDay = new TreeMap<LocalDate, TreeSet<TimeSlot>>();
-        Calendar calen = new Calendar(TimeSlotsPerDay);
-        this.calendar = calen;
-    }
+
 
     public Calendar getCalendar() {
         return calendar;

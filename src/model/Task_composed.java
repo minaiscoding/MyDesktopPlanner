@@ -14,9 +14,23 @@ public class Task_composed extends Task implements Decomposable  {
 	private Task[] Sous_taches;
 
 	@Override
-	public Task[] decompose(Duration duree) {
-		// TODO Auto-generated method stub
-		return null;
+
+	public Task_composed [] decompose(Duration duree) {
+
+	Duration newdur=this.getDuration().minus(duree);
+
+	Task_composed oldtask = new Task_composed(this.getNom(),newdur,this.getPriority(),this.getDeadline(),false,Status.notRealised,this.getCategory());
+
+	Task_composed newtask =  new Task_composed(this.getNom(),newdur,this.getPriority(),this.getDeadline(),false,Status.notRealised,this.getCategory());
+
+	Task_composed [] result = new Task_composed [2];
+
+	result[0] = oldtask;
+
+	result[1] = newtask;
+
+	return result;
+
 	}
 
 
