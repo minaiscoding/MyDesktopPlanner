@@ -64,13 +64,13 @@ public class HomePageView {
 
         int col = 0;
         int row = 0;
-        LocalDate currentDate = startDate;
+
         if (endDate == null || startDate == null) {
             LocalDate today = LocalDate.now();
             startDate = today;
             endDate = today.plusMonths(1);
         }
-
+        LocalDate currentDate = startDate;
             while (!currentDate.isAfter(endDate)) {
                 final LocalDate selectedDate = currentDate;  // Capture currentDate in a final variable
 

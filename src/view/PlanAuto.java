@@ -1,7 +1,10 @@
 package view;
 
 import java.time.LocalDate;
+
 import java.util.ArrayList;
+
+import java.util.Iterator;
 
 import javafx.geometry.Insets;
 
@@ -30,8 +33,10 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints ;
 
 public class PlanAuto extends GridPane{
-	private AppData appData;
-	private ArrayList<Task> selectedTasks;
+
+private AppData appData;
+
+private ArrayList<Task> selectedTasks;
 
 private User model;
 
@@ -56,8 +61,11 @@ return Fin_periode.getValue();
 public PlanAuto (AppData appData,ArrayList<Task> selectedTasks )
 
 {
+
 this.appData = appData;
+
 this.selectedTasks = selectedTasks;
+
 this.model=appData.getCurrentUser();
 
 this.setAlignment(Pos.CENTER);
@@ -120,7 +128,7 @@ public void updateItem(LocalDate date, boolean empty) {
 
 super.updateItem(date, empty);
 
-LocalDate startDate = LocalDate.now(); // Définir votre jour de début ici
+LocalDate startDate = LocalDate.now(); // Definir votre jour de debut ici
 
 setDisable(empty || date.compareTo(startDate) < 0);
 
@@ -140,7 +148,7 @@ public void updateItem(LocalDate date, boolean empty) {
 
 super.updateItem(date, empty);
 
-LocalDate startDate = Debut_periode.getValue(); // Utilisez la valeur sélectionnée dans le premier DatePicker
+LocalDate startDate = Debut_periode.getValue(); // Utilisez la valeur selectionnee dans le premier DatePicker
 
 setDisable(empty || date.compareTo(startDate) < 0);
 
@@ -156,7 +164,7 @@ LocalDate startDate = newValue;
 
 Fin_periode.setDisable(false);
 
-//Fin_periode.setValue(startDate); // Mettez à jour la valeur du deuxième DatePicker avec la date de début sélectionnée
+//Fin_periode.setValue(startDate); // Mettez e jour la valeur du deuxieme DatePicker avec la date de debut selectionnee
 
 Fin_periode.setDayCellFactory(picker -> new DateCell() {
 
@@ -176,7 +184,7 @@ setDisable(empty || date.compareTo(startDate) < 0);
 
 this.add(Fin_periode, 4, 4, 4, 1);
 
-Label etiq4=creerMessage("Block the TimeSlot for this Task? ");
+/*Label etiq4=creerMessage("Block the TimeSlot for this Task? ");
 
 this.add(etiq4, 0, 6, 8, 1);
 
@@ -184,7 +192,7 @@ blocked = new ChoiceBox();
 
 blocked.getItems().addAll("Yes ", "No ");
 
-this.add(blocked, 8, 6, 2, 1);
+this.add(blocked, 8, 6, 2, 1);*/
 
 Button btn1 = new Button("Plan");
 
@@ -195,6 +203,20 @@ btn1.setFont(Font.font ("Verdana", 15));
 btn1.setStyle("-fx-background-color: #82a156 ; -fx-text-fill: white;");
 
 btn1.setOnAction(event -> {
+
+//############################################
+
+if (this.Debut_periode==null && this.Fin_periode==null)
+
+{
+
+if (selectedTasks.size()==1)
+
+{
+
+for (Task task : selectedTasks) {
+
+if(task != null){
 
 boolean plan = model.planifier(task);
 
@@ -211,7 +233,6 @@ alert.setContentText("Your task was well planned.");
 alert.showAndWait();
 
 }
-
 
 else {
 
@@ -231,7 +252,6 @@ alert.showAndWait();
 
 }
 
-
 else// composed Task
 
 {
@@ -246,24 +266,197 @@ alert.setContentText("This task cannot be scheduled before this deadline. Do you
 
 alert.showAndWait();
 
+model.planifierComposed((Task_composed) task);
+
+}
+
+}
+
+}
+
+}
+
+}
+
+else
+
+{
+
+for (Task task : selectedTasks) {
+
+if(task != null){
+
+boolean plan = model.planifier(task);
+
+if (plan) {/* noramalement faire l'affichage */
+
+System.out.println("Your task was well planned.");
+
+}
+
+// la tache n'est pas planifiée
+
+else {
+
+if (task instanceof Task_simple) System.out.println("This task cannot be scheduled before this deadline. Do you want to decompose it into subtasks?");
+
+else// composed Task
+
+{
+
+System.out.println("This task cannot be scheduled before this deadline. Do you want to decompose it into subtasks?");
 
 model.planifierComposed((Task_composed) task);
 
+}
 
 }
 
-
+}
 
 }
 
+}
 
+}
 
+else // l'utilisateur a choisi une plage du date pour faire la planification
+
+{
+
+if (selectedTasks.size()==1)
+
+{
+
+for (Task task : selectedTasks) {
+
+if(task != null){
+
+boolean plan = model.planifier(task,this.getDebut_periode(),this.getFin_periode());
+
+if (plan) {
+
+Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+alert.setTitle("Automatic Planning");
+
+alert.setHeaderText(null);
+
+alert.setContentText("Your task was well planned.");
+
+alert.showAndWait();
+
+}
+
+else {
+
+if (task instanceof Task_simple)
+
+{
+
+Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+alert.setTitle("Automatic Planning");
+
+alert.setHeaderText(null);
+
+alert.setContentText("This task cannot be scheduled before this date, propose a new endDate if you want.");
+
+alert.showAndWait();
+
+}
+
+else// composed Task
+
+{
+
+//
+
+Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+alert.setTitle("Automatic Planning");
+
+alert.setHeaderText(null);
+
+alert.setContentText("This task cannot be scheduled before this date. Do you want to decompose it into subtasks?");
+
+alert.showAndWait();
+
+model.planifierComposed((Task_composed) task);
+
+}
+
+}
+
+}
+
+}
+
+}
+
+else
+
+{
+
+for (Task task : selectedTasks) {
+
+if(task != null){
+
+boolean plan = model.planifier(task,this.getDebut_periode(),this.getFin_periode());
+
+if (plan) {/* noramalement faire l'affichage */
+
+System.out.println("Your task was well planned.");
+
+}
+
+// la tache n'est pas planifiée
+
+else {
+
+if (task instanceof Task_simple) System.out.println("This task cannot be scheduled before this deadline. Do you want to decompose it into subtasks?");
+
+else// composed Task
+
+{
+
+System.out.println("This task cannot be scheduled before this deadline. Do you want to decompose it into subtasks?");
+
+model.planifierComposed((Task_composed) task,this.getDebut_periode(),this.getFin_periode());
+
+}
+
+}
+
+}
+
+}
+
+}
+
+}
 
 //model.planifier();
 
 });
 
 this.add(btn1, 3, 8, 4, 1);
+
+Button btn3 = new Button("Afficher");
+
+btn3.setPrefSize(120,40);
+
+btn3.setFont(Font.font ("Verdana", 15));
+
+btn3.setStyle("-fx-background-color: #82a156 ; -fx-text-fill: white;");
+
+btn3.setOnAction(event -> {
+
+this.model.afficher_creneau();
+
+});
+
+this.add(btn3, 3, 9, 4, 1);
 
 }
 
