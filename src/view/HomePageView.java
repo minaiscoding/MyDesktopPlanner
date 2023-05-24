@@ -47,7 +47,7 @@ public class HomePageView {
         centerBox.setSpacing(30);
 
         // Create the title label
-        Label titleLabel = new Label("Amina's Calendar");
+        Label titleLabel = new Label(appData.getCurrentUser().getUsername()+"'s Calendar");
         titleLabel.setFont(Font.font("Lobster", FontWeight.BOLD, 50));  // Set the font for the title
         titleLabel.setAlignment(Pos.CENTER);
         titleLabel.setStyle("-fx-text-fill: #577133");
