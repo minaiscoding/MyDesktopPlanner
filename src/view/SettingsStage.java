@@ -42,6 +42,8 @@ public class SettingsStage extends Stage {
         	newPlanner.show();
 
         });
+        
+
 
         // Add button actions here
 

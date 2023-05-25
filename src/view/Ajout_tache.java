@@ -84,7 +84,7 @@ public class Ajout_tache extends Stage {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
-                LocalDate startDate = LocalDate.now(); // Définir votre jour de début ici
+                LocalDate startDate = LocalDate.now(); // Dï¿½finir votre jour de dï¿½but ici
                 setDisable(empty || date.compareTo(startDate) < 0);
             }
         });
@@ -157,7 +157,12 @@ public class Ajout_tache extends Stage {
 
        Button bouton = new Button("Add a new Category?");
        bouton.setPrefSize(150,10);
-       bouton.setStyle("-fx-background-color: white; -fx-text-fill: purple; -fx-underline: true;");
+      bouton.setStyle("-fx-background-color: white; -fx-text-fill: purple; -fx-underline: true;");
+      bouton.setOnAction(event -> {
+   	        Add_Category stage= new Add_Category (this.model);
+   	        stage.show();
+        
+       });
        grid.add(bouton ,5,6,5, 1);
 
 

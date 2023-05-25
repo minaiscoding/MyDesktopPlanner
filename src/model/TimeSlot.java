@@ -87,14 +87,21 @@ public class TimeSlot implements Serializable, Comparable<TimeSlot>,Decomposable
         // Add your implementation here
         return null;
     }
-    public void afficher()
+    
+	public void afficher()
 	{
+		System.out.println("______________");
 		System.out.println("[ "+this.startTime+" ; "+this.endTime+" ]");
 		if (isFree == true) {
 		System.out.println("Etat: libre");
 	      }
-		else System.out.println("Etat: occup�");
+		else {
+			System.out.println("Etat: occupe");
+		   System.out.println("Task:"+this.task.getNom());
+		}
 		System.out.println("______________");
+		
+	
 	}
 
 

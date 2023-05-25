@@ -108,19 +108,12 @@ public class HomePageView {
 
 
     private void displaySelectedDate(LocalDate date) {
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.UTILITY);
-
-        Label dateLabel = new Label(date.toString());
-        dateLabel.setStyle("-fx-font-size: 20px;");
-
-        VBox root = new VBox(dateLabel);
-        root.setPadding(new Insets(10));
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        private void displaySelectedDate(LocalDate date) 
+        {
+          DayView stage= new DayView (this.appData.getCurrentUser(),date);
+          stage.show();
+       
+        }
     }
 
 

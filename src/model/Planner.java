@@ -63,23 +63,15 @@ public class Planner implements Serializable {
 
     HashSet<Category> cat= new HashSet<Category>();
 
-    Category C1= new Category("Sport ");
-
-    Category C2= new Category("Study ");
-
-    Category C3= new Category("Work ");
-
-    Category C4= new Category("Hobby ");
-
-    cat.add(C1);
-
-    cat.add(C2);
-
-    cat.add(C3);
-
-    cat.add(C4);
-
-    cat.add(C3);
+	Category C1= new Category("Sport   ","blue");
+	Category C2= new Category("Study   ","purple");
+	Category C3= new Category("Work   ","red");
+	Category C4= new Category("Hobby   ","orange");
+			cat.add(C1);
+			cat.add(C2);
+			cat.add(C3);
+			cat.add(C4);
+			cat.add(C3);
 
     this.categories=cat;
 
@@ -232,5 +224,9 @@ public class Planner implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void addCategory(Category category) {
+		this.categories.add(category);	
 	}
 }

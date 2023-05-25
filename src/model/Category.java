@@ -38,7 +38,13 @@ public class Category implements Serializable{
 			 this.type=type;
 		 }
 
-		 // reéfinition du hashcode et equals:
+		   public Category(String type, String color) {
+			   this.type=type;
+			   this.color=color;
+		   
+		}
+		 
+		 // reï¿½finition du hashcode et equals:
 
 		   public boolean equals(Object o)
 		    {
