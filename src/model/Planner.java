@@ -191,6 +191,7 @@ public class Planner implements Serializable {
     }
 
     public void addBadge(Badge badge) {
+    	if(badges == null){badges = new ArrayList<Badge>();}
         badges.add(badge);
         if (getNumBadge(badge) % 3 == 0) {
             addBadge(badge.next());
@@ -225,8 +226,8 @@ public class Planner implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public void addCategory(Category category) {
-		this.categories.add(category);	
+		this.categories.add(category);
 	}
 }

@@ -213,6 +213,7 @@ public class User implements Serializable{
 
  //on vérifie si le jour est inclus dans le periode demendé:
 
+
  if (jour.plusDays(1).isAfter(startday) && jour.isBefore(endday.plusDays(1)) )
 
  {
@@ -490,6 +491,7 @@ public class User implements Serializable{
  TreeMap<LocalDate,TreeSet<TimeSlot>> list_timeslots= this.findTimeslots(task);
 
  this.planifier2( list_timeslots,task);
+ task.setscheduled(true);
 
  }
 
@@ -596,6 +598,7 @@ public void planifierComposed(Task_composed task, LocalDate startday,LocalDate e
 TreeMap<LocalDate,TreeSet<TimeSlot>> list_timeslots= this.findTimeslots(task, startday, endday);
 
 this.planifier2( list_timeslots,task);
+task.setscheduled(true);
 
 }
 

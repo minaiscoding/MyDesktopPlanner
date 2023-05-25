@@ -157,11 +157,11 @@ public class Ajout_tache extends Stage {
 
        Button bouton = new Button("Add a new Category?");
        bouton.setPrefSize(150,10);
-      bouton.setStyle("-fx-background-color: white; -fx-text-fill: purple; -fx-underline: true;");
+      bouton.setStyle("-fx-background-color: white; -fx-text-fill: #82a156; -fx-underline: true;");
       bouton.setOnAction(event -> {
-   	        Add_Category stage= new Add_Category (this.model);
+   	        Add_Category stage= new Add_Category (this.appData);
    	        stage.show();
-        
+
        });
        grid.add(bouton ,5,6,5, 1);
 
@@ -174,10 +174,10 @@ public class Ajout_tache extends Stage {
 		 Button btn =new Button("Add");
 		 btn.setPrefSize(160,40);
 		 btn.setFont(Font.font ("Verdana", 15));
-		 btn.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
+		 btn.setStyle("-fx-background-color: #82a156 ; -fx-text-fill: white;");
 	     btn.setOnAction(event -> {
 
-	    	// if (nom!=null)&&(deadline!=null)&&()
+	    	//if   (nom!=null)&&(deadline!=null)&&()
 	    	 //nom
 	    	 String name= nom.getText();
 	    	 //deadline
@@ -247,7 +247,7 @@ public class Ajout_tache extends Stage {
 	    	 Button btn3 = new Button("Save  ");
 	       	   	btn3.setPrefSize(160,40);
 	       	    btn3.setFont(Font.font ("Verdana", 15));
-	       	    btn3.setStyle("-fx-background-color: purple ; -fx-text-fill: white;");
+	       	    btn3.setStyle("-fx-background-color: #82a156 ; -fx-text-fill: white;");
 	       	    btn3.setOnAction(event -> {
 	       	      DataHandler.save(appData);
 close();

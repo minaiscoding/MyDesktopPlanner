@@ -206,7 +206,7 @@ btn1.setOnAction(event -> {
 
 //############################################
 
-if (this.Debut_periode==null && this.Fin_periode==null)
+if (this.Debut_periode.getValue()==null || this.Fin_periode.getValue()==null)
 
 {
 
@@ -239,8 +239,10 @@ else {
 if (task instanceof Task_simple)
 
 {
+	New_deadline stage = new New_deadline(task);
+	stage.show();
 
-Alert alert = new Alert(Alert.AlertType.INFORMATION);
+/*Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
 alert.setTitle("Automatic Planning");
 
@@ -248,7 +250,7 @@ alert.setHeaderText(null);
 
 alert.setContentText("This task cannot be scheduled before this deadline, propose a new deadline if you want.");
 
-alert.showAndWait();
+alert.showAndWait();*/
 
 }
 
@@ -332,6 +334,7 @@ for (Task task : selectedTasks) {
 
 if(task != null){
 
+
 boolean plan = model.planifier(task,this.getDebut_periode(),this.getFin_periode());
 
 if (plan) {
@@ -353,6 +356,9 @@ else {
 if (task instanceof Task_simple)
 
 {
+
+	New_deadline stage = new New_deadline(task);
+	stage.show();
 
 Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
@@ -401,8 +407,11 @@ else
 for (Task task : selectedTasks) {
 
 if(task != null){
+	if (this.Debut_periode!=null && this.Fin_periode!=null)
 
-boolean plan = model.planifier(task,this.getDebut_periode(),this.getFin_periode());
+	{boolean plan = model.planifier(task,this.getDebut_periode(),this.getFin_periode());
+
+
 
 if (plan) {/* noramalement faire l'affichage */
 
@@ -437,7 +446,7 @@ model.planifierComposed((Task_composed) task,this.getDebut_periode(),this.getFin
 }
 
 //model.planifier();
-
+}
 });
 
 this.add(btn1, 3, 8, 4, 1);

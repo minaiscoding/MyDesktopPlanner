@@ -38,12 +38,12 @@ public class Category implements Serializable{
 			 this.type=type;
 		 }
 
-		   public Category(String type, String color) {
+		  public Category(String type, String color) {
 			   this.type=type;
 			   this.color=color;
-		   
+
 		}
-		 
+
 		 // re�finition du hashcode et equals:
 
 		   public boolean equals(Object o)
@@ -54,6 +54,10 @@ public class Category implements Serializable{
 		    {
 		        return this.type.hashCode();
 		    }
+		   @Override
+		   public String toString(){
+			   return this.type;
+		   }
 }
 /*
 

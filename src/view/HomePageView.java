@@ -107,14 +107,14 @@ public class HomePageView {
     }
 
 
-    private void displaySelectedDate(LocalDate date) {
-        private void displaySelectedDate(LocalDate date) 
+
+        private void displaySelectedDate(LocalDate date)
         {
           DayView stage= new DayView (this.appData.getCurrentUser(),date);
           stage.show();
-       
+
         }
-    }
+
 
 
 }
