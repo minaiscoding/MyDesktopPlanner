@@ -510,4 +510,99 @@ public class User implements Serializable{
  }
 
  }
+
+//pour un plage du date:
+
+public TreeMap<LocalDate,TreeSet<TimeSlot>> findTimeslots(Task_composed task, LocalDate startday,LocalDate endday)
+
+{
+
+TreeMap<LocalDate,TreeSet<TimeSlot>> list_timeslotsByday= new TreeMap<LocalDate,TreeSet<TimeSlot>>();
+
+TreeSet <TimeSlot> list_timeslots =new TreeSet <TimeSlot> () ;
+
+Duration durationTotal = Duration.ofSeconds(0);
+
+TreeMap<LocalDate, TreeSet<TimeSlot>> timeslotslist= this.planner.getCalendar().getTimeByDay();
+
+Iterator<Entry<LocalDate, TreeSet<TimeSlot>>> it_map = timeslotslist.entrySet().iterator();
+
+Entry<LocalDate, TreeSet<TimeSlot>> entry;
+
+TreeSet<TimeSlot> TimeSlot_list;
+
+LocalDate jour;
+
+while ((it_map.hasNext() ))
+
+{
+
+entry=it_map.next();
+
+jour=entry.getKey();
+
+//on vérifie si le jour est inclus dans le periode demendé:
+
+if (jour.plusDays(1).isAfter(startday) && jour.isBefore(endday.plusDays(1)) )
+
+{
+
+TimeSlot_list =entry.getValue();
+
+Iterator<TimeSlot> it = TimeSlot_list.iterator();
+
+TimeSlot t;
+
+while (it.hasNext())
+
+{
+
+t=it.next();
+
+if (t.isFree())
+
+{
+
+durationTotal= durationTotal.plus( Duration.between(t.getStartTime(), t.getEndTime()));
+
+list_timeslots.add(t);
+
+if (durationTotal.plusMinutes(1).compareTo(task.getDuration() )> 0) {
+
+list_timeslotsByday.put(jour, list_timeslots);
+
+return list_timeslotsByday ;
+
 }
+
+}
+
+}
+
+list_timeslotsByday.put(jour, list_timeslots);
+
+}
+
+}
+
+return list_timeslotsByday ;
+
+}
+
+public void planifierComposed(Task_composed task, LocalDate startday,LocalDate endday)
+
+{
+
+TreeMap<LocalDate,TreeSet<TimeSlot>> list_timeslots= this.findTimeslots(task, startday, endday);
+
+this.planifier2( list_timeslots,task);
+
+}
+
+public void afficher_creneau()
+
+{
+
+planner.afficher_Calendar();
+
+}}
