@@ -38,7 +38,6 @@ public class NavBar extends VBox {
 
         // Apply styles and font size to the buttons
         String buttonStyle = "-fx-background-color: transparent; -fx-text-fill: white;";
-        String fontSize = "20px";
         homeButton.setStyle(buttonStyle);
         tasksButton.setStyle(buttonStyle);
         projectsButton.setStyle(buttonStyle);

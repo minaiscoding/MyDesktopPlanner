@@ -1,7 +1,7 @@
 package model;
 import java.io.Serializable;
 import java.time.Duration;
-import java.time.LocalDate;
+
 import java.time.LocalTime;
 
 public class TimeSlot implements Serializable, Comparable<TimeSlot>,Decomposable {
@@ -87,7 +87,7 @@ public class TimeSlot implements Serializable, Comparable<TimeSlot>,Decomposable
         // Add your implementation here
         return null;
     }
-    
+
 	public void afficher()
 	{
 		System.out.println("______________");
@@ -100,8 +100,8 @@ public class TimeSlot implements Serializable, Comparable<TimeSlot>,Decomposable
 		   System.out.println("Task:"+this.task.getNom());
 		}
 		System.out.println("______________");
-		
-	
+
+
 	}
 
 

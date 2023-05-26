@@ -1,13 +1,13 @@
 package view;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableRow;
-import javafx.scene.paint.Color;
+
 import javafx.util.Callback;
 import model.Task;
 import model.Priority;
@@ -17,11 +17,12 @@ import model.Category;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.TreeSet;
+
 
 public class CustomTableView extends TableView<Task> {
 
-    public CustomTableView(ArrayList<Task> taskList) {
+    @SuppressWarnings("unchecked")
+	public CustomTableView(ArrayList<Task> taskList) {
         // Create table columns and set their cell value factories
         TableColumn<Task, String> nameCol = new TableColumn<>("Task");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("nom"));

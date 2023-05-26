@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.util.Date;
+
 //change
 public abstract class Task implements Comparable <Task>, Serializable {
     /**

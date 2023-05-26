@@ -30,7 +30,7 @@ public class Add_Slot0  extends Stage {
 
 	   this.setTitle("Add Time Slots");
 	   this.setResizable(false);
-	   this.appData = appData;
+	   this.setAppData(appData);
 	   this.model=appData.getCurrentUser();
 
 
@@ -144,6 +144,16 @@ public class Add_Slot0  extends Stage {
     	etiquette.setLineSpacing(20);
     	return etiquette;
     	}
+
+
+	public AppData getAppData() {
+		return appData;
+	}
+
+
+	public void setAppData(AppData appData) {
+		this.appData = appData;
+	}
 
 
 }

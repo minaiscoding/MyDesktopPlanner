@@ -23,7 +23,6 @@ public class HistoryPlanner implements Serializable {
     }
 
     public HistoryPlanner() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getName() {

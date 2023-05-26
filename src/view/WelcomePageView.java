@@ -12,7 +12,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import model.*;
 import controller.*;
 
 public class WelcomePageView {

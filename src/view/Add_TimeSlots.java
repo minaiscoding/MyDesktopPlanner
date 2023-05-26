@@ -25,7 +25,7 @@ public class Add_TimeSlots extends GridPane{
 	public Add_TimeSlots(AppData appdata  )
 	{
 		appData = appdata;
-		this.model=appData.getCurrentUser();
+		this.setModel(appData.getCurrentUser());
 
 		this.setAlignment(Pos.CENTER);
 		this.setHgap(10);
@@ -95,7 +95,7 @@ public class Add_TimeSlots extends GridPane{
        	    	DataHandler.save(appData);
        	    	Stage stage = (Stage) btn3.getScene().getWindow();
        	     stage.close();
-       	     
+
 
 
           	       });
@@ -118,6 +118,24 @@ public class Add_TimeSlots extends GridPane{
     	etiquette.setLineSpacing(20);
     	return etiquette;
     	}
+
+
+
+
+
+
+	public User getModel() {
+		return model;
+	}
+
+
+
+
+
+
+	public void setModel(User model) {
+		this.model = model;
+	}
 
 }
 

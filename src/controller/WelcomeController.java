@@ -8,17 +8,19 @@ import java.util.ArrayList;
 //Controller class
 public class WelcomeController {
  private AppData appData;
+ //constructor
+ public WelcomeController(AppData appData) {
+     this.appData = appData;
+ }
 
 public AppData getAppData() {
 	return appData;
 }
 
- public WelcomeController(AppData appData) {
-     this.appData = appData;
- }
 
 
 
+// verify if the user is new or not
 public boolean verifyUser(String name) {
      ArrayList<User> users = appData.getUsers();
      User user = findUser(name);
@@ -37,7 +39,7 @@ public boolean verifyUser(String name) {
          return true; //first time
      }
  }
-
+// look for the user in the list of users by their pseudo
  private User findUser(String name) {
      ArrayList<User> users = appData.getUsers();
      for (User user : users) {

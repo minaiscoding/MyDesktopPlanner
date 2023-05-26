@@ -123,7 +123,7 @@ public class Ajout_tache extends Stage {
          Label etiq4=creerMessage("Priority: ");
          grid.add(etiq4, 0, 4, 3, 1);
 
-        priorityy= new ChoiceBox();
+        priorityy= new ChoiceBox<String>();
         priorityy.getItems().addAll("High", "Medium", "Low");
 
         grid.add(priorityy, 3, 4, 6, 1);
@@ -132,7 +132,7 @@ public class Ajout_tache extends Stage {
         Label etiq=creerMessage("Decomposable: ");
         grid.add(etiq, 0, 5, 3, 1);
 
-         decomp = new ChoiceBox();
+         decomp = new ChoiceBox<String>();
         decomp.getItems().addAll("Yes       ", "No         ");
 
         grid.add(decomp, 3, 5, 6, 1);
@@ -144,7 +144,7 @@ public class Ajout_tache extends Stage {
         Label etiq5=creerMessage("Category: ");
         grid.add(etiq5, 0, 6, 3, 1);
 
-         category= new ChoiceBox();
+         category= new ChoiceBox<String>();
         HashSet<Category> cat= model.getPlanner().getCategories();
         if(cat == null){cat = new HashSet<Category>();}
         Iterator<Category> it = cat.iterator();
@@ -210,8 +210,6 @@ public class Ajout_tache extends Stage {
 	    	  if (this.priorityy.getValue().equals("Low"))  {  prio=Priority.LOW; }
 	    	  if (this.priorityy.getValue().equals("Medium")) {prio=Priority.MEDIUM;}
 
-	    	  // decomposable
-	    	  boolean decompsable;
 	    	  if (decomp.getValue().equals("Yes       "))
 	    	  {
 	    		  Task_composed tache= new Task_composed(name, Duration.ofMinutes(duration),prio,deadline,false,Status.notRealised,categorie);

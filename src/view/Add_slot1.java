@@ -37,7 +37,7 @@ public class Add_slot1  extends Stage {
 
    // constructor of the Stage
    public Add_slot1 (AppData appData ) {
-	   this.appData = appData;
+	   this.setAppData(appData);
 	   this.setTitle("Add Time Slot");
 	   this.setResizable(false);
 	   this.model=appData.getCurrentUser();
@@ -218,6 +218,14 @@ public  LocalTime getHeureDebut()
 
              return bouton;
           }
+
+		public AppData getAppData() {
+			return appData;
+		}
+
+		public void setAppData(AppData appData) {
+			this.appData = appData;
+		}
 
 
 }

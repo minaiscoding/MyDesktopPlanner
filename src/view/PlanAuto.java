@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 import java.util.ArrayList;
 
-import java.util.Iterator;
-
 import javafx.geometry.Insets;
 
 import javafx.geometry.Pos;
@@ -17,8 +15,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
-
-import javafx.scene.control.ChoiceBox;
 
 import javafx.scene.control.DateCell;
 
@@ -34,17 +30,11 @@ import javafx.scene.layout.RowConstraints ;
 
 public class PlanAuto extends GridPane{
 
-private AppData appData;
-
-private ArrayList<Task> selectedTasks;
-
 private User model;
 
 private DatePicker Debut_periode;
 
 private DatePicker Fin_periode;
-
-private ChoiceBox<String> blocked;
 
 public LocalDate getDebut_periode() {
 
@@ -61,10 +51,6 @@ return Fin_periode.getValue();
 public PlanAuto (AppData appData,ArrayList<Task> selectedTasks )
 
 {
-
-this.appData = appData;
-
-this.selectedTasks = selectedTasks;
 
 this.model=appData.getCurrentUser();
 

@@ -1,5 +1,5 @@
 package view;
-import javafx.application.Application;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,11 +14,8 @@ import model.HistoryPlanner;
 import model.Statistiques;
 
 public class SettingsStage extends Stage {
-	private AppData appData;
-
-    public SettingsStage(AppData appData) {
-    	this.appData = appData;
-        setTitle("Settings");
+	public SettingsStage(AppData appData) {
+    	setTitle("Settings");
         setResizable(false);
 
         VBox root = new VBox(20);

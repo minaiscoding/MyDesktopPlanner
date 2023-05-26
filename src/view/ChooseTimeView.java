@@ -7,7 +7,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -17,10 +16,8 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.AppData;
@@ -31,8 +28,6 @@ import model.TimeSlot;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Set;
-import java.util.TreeSet;
-
 import controller.TasksController;
 
 public class ChooseTimeView extends Stage {
@@ -42,8 +37,8 @@ public class ChooseTimeView extends Stage {
     private Planner planner;
 
     public ChooseTimeView(AppData appData,Task task) {
-    	this.task = task;
-        this.appData = appData;
+    	this.setTask(task);
+        this.setAppData(appData);
         this.planner = appData.getCurrentUser().getPlanner();
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -179,4 +174,20 @@ public class ChooseTimeView extends Stage {
         }
         return timeSlotList;
     }
+
+	public Task getTask() {
+		return task;
+	}
+
+	public void setTask(Task task) {
+		this.task = task;
+	}
+
+	public AppData getAppData() {
+		return appData;
+	}
+
+	public void setAppData(AppData appData) {
+		this.appData = appData;
+	}
 }

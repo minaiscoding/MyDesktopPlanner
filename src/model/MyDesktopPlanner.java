@@ -5,20 +5,6 @@ import javafx.stage.Stage;
 import view.*;
 import controller.*;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.TreeMap;
-import java.util.TreeSet;
-
-import com.sun.javafx.collections.MappingChange.Map;
-
-
 //Main class
 public class MyDesktopPlanner extends Application {
 

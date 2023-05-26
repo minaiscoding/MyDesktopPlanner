@@ -1,6 +1,6 @@
 package view;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 
 import javafx.geometry.Insets;
@@ -25,17 +25,15 @@ import javafx.scene.layout.RowConstraints ;
 
 public class Planifier0 extends Stage {
 
-private User model;
-private AppData appData;
+
+
 
 // constructor of the Stage
 
 public Planifier0 (AppData appData, ArrayList<Task> selectedTasks) {
 
 this.setResizable(false);
-this.appData = appData;
-
-this.model=appData.getCurrentUser();
+appData.getCurrentUser();
 
 // Create a GridPane layout
 
